@@ -22,15 +22,18 @@ public class DrawAction {
     }
     
     public func draw(initialBrushSize: CGFloat) {
-        // Determine x and y to draw.
+        var r = getRect(initialBrushSize)
+        color.setFill()
+        NSRectFill(r)
+    }
+    
+    public func getRect(initialBrushSize: CGFloat) -> NSRect {
         var x = point.x
         var y = point.y
         
         var lx = x - (x % initialBrushSize)
         var ly = y - (y % initialBrushSize)
         var r = NSMakeRect(lx, ly, brushSize, brushSize)
-        
-        color.setFill()
-        NSRectFill(r)
+        return r
     }
 }

@@ -11,9 +11,10 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
                             
     @IBOutlet weak var window: NSWindow!
+    @IBOutlet weak var customView: Canvas!
+
     @IBOutlet weak var colourWell: NSColorWell!
     @IBOutlet weak var canvasColourWell: NSColorWell!
-    @IBOutlet weak var customView: Canvas!
     @IBOutlet weak var brushSizeView: NSTextField!
     @IBOutlet weak var undoRedoStepsView: NSTextField!
 
@@ -25,6 +26,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Insert code here to tear down your application
     }
 
+    //
+    // Setting attributes.
+    //
+    
     @IBAction func onColourPicked(sender: NSColorWell) {
         customView.setColour(sender.color)
     }
@@ -33,14 +38,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         customView.setCanvasColour(sender.color)
     }
     
-    @IBAction func onClearClicked(sender: AnyObject) {
-        customView.clearScreen()
-    }
-    
     @IBAction func onBrushSizedChanged(sender: AnyObject) {
         var size = brushSizeView.integerValue
-        println("brush size changed: " + size.description)
         customView.setBrushSize(CGFloat(size))
+    }
+    
+    //
+    // Undo / redo / clear.
+    //
+    
+    @IBAction func onClearClicked(sender: AnyObject) {
+        customView.clearScreen()
     }
     
     @IBAction func onUndo(sender: AnyObject) {
@@ -50,6 +58,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBAction func onRedo(sender: AnyObject) {
         customView.readdRect(undoRedoStepsView.integerValue)
     }
+    
+    //
+    // Save screen.
+    //
     
     @IBAction func onSave(sender: AnyObject) {
         save()
