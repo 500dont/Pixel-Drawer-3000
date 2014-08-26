@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6157" systemVersion="14A237a" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6205" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6157"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6205"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -10,13 +10,18 @@
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
-        <customObject id="-3" userLabel="Application"/>
-        <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModuleProvider="target">
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="LearnSwift" customModuleProvider="target">
             <connections>
+                <outlet property="brushSizeView" destination="afa-bQ-LkT" id="pKu-iR-5v9"/>
+                <outlet property="colourWell" destination="VdF-W3-nJg" id="frZ-BB-ncK"/>
+                <outlet property="customView" destination="F4Q-jm-tfc" id="BG2-jD-L6s"/>
+                <outlet property="onClearClicked" destination="utP-bm-wVh" id="Rdz-bS-e4P"/>
+                <outlet property="undoRedoSteps" destination="hIA-1Z-LNe" id="HSu-Zo-xUm"/>
+                <outlet property="undoRedoStepsView" destination="hIA-1Z-LNe" id="do8-64-n5e"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
-        <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <menu title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
             <items>
                 <menuItem title="LearnSwift" id="1Xt-HY-uBw">
@@ -98,12 +103,12 @@
                             </menuItem>
                             <menuItem title="Save…" keyEquivalent="s" id="pxx-59-PXV">
                                 <connections>
-                                    <action selector="saveDocument:" target="-1" id="teZ-XB-qJY"/>
+                                    <action selector="onSave:" target="Voe-Tx-rLC" id="rJH-K9-zeu"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Save As…" keyEquivalent="S" id="Bw7-FT-i3A">
+                            <menuItem title="Save As…" id="Bw7-FT-i3A">
                                 <connections>
-                                    <action selector="saveDocumentAs:" target="-1" id="mDf-zr-I0C"/>
+                                    <action selector="onSaveAs:" target="Voe-Tx-rLC" id="wAD-Mo-jvB"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Revert to Saved" id="KaW-ft-85H">
@@ -354,37 +359,17 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Font" systemMenu="font" id="aXa-aM-Jaq">
                                     <items>
-                                        <menuItem title="Show Fonts" keyEquivalent="t" id="Q5e-8K-NDq">
-                                            <connections>
-                                                <action selector="orderFrontFontPanel:" target="YLy-65-1bz" id="WHr-nq-2xA"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Bold" tag="2" keyEquivalent="b" id="GB9-OM-e27">
-                                            <connections>
-                                                <action selector="addFontTrait:" target="YLy-65-1bz" id="hqk-hr-sYV"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Italic" tag="1" keyEquivalent="i" id="Vjx-xi-njq">
-                                            <connections>
-                                                <action selector="addFontTrait:" target="YLy-65-1bz" id="IHV-OB-c03"/>
-                                            </connections>
-                                        </menuItem>
+                                        <menuItem title="Show Fonts" keyEquivalent="t" id="Q5e-8K-NDq"/>
+                                        <menuItem title="Bold" tag="2" keyEquivalent="b" id="GB9-OM-e27"/>
+                                        <menuItem title="Italic" tag="1" keyEquivalent="i" id="Vjx-xi-njq"/>
                                         <menuItem title="Underline" keyEquivalent="u" id="WRG-CD-K1S">
                                             <connections>
                                                 <action selector="underline:" target="-1" id="FYS-2b-JAY"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="5gT-KC-WSO"/>
-                                        <menuItem title="Bigger" tag="3" keyEquivalent="+" id="Ptp-SP-VEL">
-                                            <connections>
-                                                <action selector="modifyFont:" target="YLy-65-1bz" id="Uc7-di-UnL"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Smaller" tag="4" keyEquivalent="-" id="i1d-Er-qST">
-                                            <connections>
-                                                <action selector="modifyFont:" target="YLy-65-1bz" id="HcX-Lf-eNd"/>
-                                            </connections>
-                                        </menuItem>
+                                        <menuItem title="Bigger" tag="3" keyEquivalent="+" id="Ptp-SP-VEL"/>
+                                        <menuItem title="Smaller" tag="4" keyEquivalent="-" id="i1d-Er-qST"/>
                                         <menuItem isSeparatorItem="YES" id="kx3-Dk-x3B"/>
                                         <menuItem title="Kern" id="jBQ-r6-VK2">
                                             <modifierMask key="keyEquivalentModifierMask"/>
@@ -669,12 +654,126 @@
         <window title="LearnSwift" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="335" y="390" width="480" height="360"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
-            <view key="contentView" id="EiT-Mj-1SZ">
-                <rect key="frame" x="0.0" y="0.0" width="480" height="360"/>
-                <autoresizingMask key="autoresizingMask"/>
+            <rect key="contentRect" x="335" y="390" width="655" height="584"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
+            <view key="contentView" wantsLayer="YES" id="EiT-Mj-1SZ">
+                <rect key="frame" x="0.0" y="0.0" width="655" height="584"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                <subviews>
+                    <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F4Q-jm-tfc" customClass="Canvas" customModule="LearnSwift" customModuleProvider="target">
+                        <rect key="frame" x="12" y="40" width="623" height="500"/>
+                    </customView>
+                    <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VdF-W3-nJg">
+                        <rect key="frame" x="12" y="548" width="44" height="23"/>
+                        <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <connections>
+                            <action selector="onColourPicked:" target="Voe-Tx-rLC" id="D6D-oT-ndc"/>
+                        </connections>
+                    </colorWell>
+                    <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="afa-bQ-LkT">
+                        <rect key="frame" x="596" y="548" width="39" height="22"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="10" drawsBackground="YES" id="JbN-Tx-beF">
+                            <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="309" maximumFractionDigits="3" id="Mk1-eE-jBY"/>
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                        <connections>
+                            <action selector="onBrushSizedChanged:" target="Voe-Tx-rLC" id="Ds3-hu-3Sv"/>
+                        </connections>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oSt-zb-8Kr">
+                        <rect key="frame" x="522" y="551" width="69" height="17"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Brush Size" id="7Ax-Vu-dqM">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="utP-bm-wVh">
+                        <rect key="frame" x="552" y="11" width="83" height="17"/>
+                        <shadow key="shadow">
+                            <color key="color" red="0.17215098505434778" green="0.16832664678344691" blue="0.15793002422300659" alpha="1" colorSpace="calibratedRGB"/>
+                        </shadow>
+                        <buttonCell key="cell" type="inline" title="Clear screen" bezelStyle="inline" imagePosition="left" alignment="center" state="on" borderStyle="border" inset="2" id="0ra-PM-Dl3">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="smallSystemBold"/>
+                            <connections>
+                                <accessibilityConnection property="link" destination="EiT-Mj-1SZ" id="4TV-fs-ja3"/>
+                            </connections>
+                        </buttonCell>
+                        <connections>
+                            <action selector="onClearClicked:" target="Voe-Tx-rLC" id="NTP-VM-7S7"/>
+                        </connections>
+                    </button>
+                    <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e8u-g4-pxi">
+                        <rect key="frame" x="12" y="9" width="44" height="23"/>
+                        <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <connections>
+                            <action selector="onCanvasColourPicked:" target="Voe-Tx-rLC" id="5sg-Gr-jFe"/>
+                        </connections>
+                    </colorWell>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KsZ-SJ-6X0">
+                        <rect key="frame" x="66" y="12" width="131" height="17"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Canvas colour" id="Cmj-eW-JtY">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BhR-yI-oGx">
+                        <rect key="frame" x="310" y="11" width="54" height="17"/>
+                        <shadow key="shadow">
+                            <color key="color" red="0.17215098509999999" green="0.16832664680000001" blue="0.15793002419999999" alpha="1" colorSpace="calibratedRGB"/>
+                        </shadow>
+                        <buttonCell key="cell" type="inline" title="Undo" bezelStyle="inline" imagePosition="left" alignment="center" state="on" borderStyle="border" inset="2" id="gSN-uk-yyS">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="smallSystemBold"/>
+                            <connections>
+                                <accessibilityConnection property="link" destination="EiT-Mj-1SZ" id="TuO-mN-sNe"/>
+                            </connections>
+                        </buttonCell>
+                        <connections>
+                            <action selector="onUndo:" target="Voe-Tx-rLC" id="PFS-oC-1lu"/>
+                        </connections>
+                    </button>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ljE-aE-Aim">
+                        <rect key="frame" x="247" y="11" width="54" height="17"/>
+                        <shadow key="shadow">
+                            <color key="color" red="0.17215098509999999" green="0.16832664680000001" blue="0.15793002419999999" alpha="1" colorSpace="calibratedRGB"/>
+                        </shadow>
+                        <buttonCell key="cell" type="inline" title="Redo" bezelStyle="inline" imagePosition="left" alignment="center" state="on" borderStyle="border" inset="2" id="fQd-Je-wOv">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="smallSystemBold"/>
+                            <connections>
+                                <accessibilityConnection property="link" destination="EiT-Mj-1SZ" id="pgT-93-s9T"/>
+                            </connections>
+                        </buttonCell>
+                        <connections>
+                            <action selector="onRedo:" target="Voe-Tx-rLC" id="TJl-xr-ZBa"/>
+                        </connections>
+                    </button>
+                    <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hIA-1Z-LNe">
+                        <rect key="frame" x="371" y="10" width="40" height="22"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="10" placeholderString="" drawsBackground="YES" id="ZVr-ze-wG1">
+                            <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="309" maximumFractionDigits="3" id="qMS-mV-fz7"/>
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kqz-Fq-Eh0">
+                        <rect key="frame" x="417" y="12" width="38" height="17"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Steps" id="yv7-Kb-gl6">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                </subviews>
             </view>
+            <point key="canvasLocation" x="-306.5" y="147"/>
         </window>
+        <viewController id="CIm-V8-wRQ"/>
     </objects>
 </document>
