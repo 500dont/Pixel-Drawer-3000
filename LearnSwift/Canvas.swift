@@ -11,6 +11,8 @@ import Foundation
 
 public class Canvas: NSView {
     
+    var array: Array<Array<DrawAction>>
+    
     var canvasColor: NSColor
     var myColor: NSColor
     
@@ -23,18 +25,25 @@ public class Canvas: NSView {
     var initialBrushSize: CGFloat
     
     required public init(coder: NSCoder) {
+        // TODO -- Not sure why this is needed? Swift / cocoa thing?
         fatalError("NSCoding not supported")
     }
     
     override init(frame: NSRect) {
-        self.drawAll = true
-        self.drawLast = false
-        self.canvasColor = NSColor.whiteColor()
-        self.myColor = NSColor.blueColor()
-        self.brushSize = 10
-        self.initialBrushSize = -1
-        self.drawActions = []
-        self.removedActions = []
+        var width = 500
+        var height = 300
+        
+        // array[a,b] => (a,b) = (x,y)
+        array = Array(count:width, repeatedValue:Array(count:height, repeatedValue:DrawAction()))
+        
+        drawAll = true
+        drawLast = false
+        canvasColor = NSColor.whiteColor()
+        myColor = NSColor.blueColor()
+        brushSize = 10
+        initialBrushSize = -1
+        drawActions = []
+        removedActions = []
         
         super.init(frame: frame)
     }
@@ -63,7 +72,21 @@ public class Canvas: NSView {
             da.draw(initialBrushSize)
             drawLast = false
         }
-
+    }
+    
+    //
+    // Better canvas world
+    //
+    
+    // Basically we want to take a point -> set an item in our array to have a colour
+    private func colorRect(theEvent: NSEvent!) {
+        var point = convertPoint(theEvent.locationInWindow, fromView:nil)
+        var x = point.x
+        var y = point.y
+        
+        var lx = x - (x % initialBrushSize)
+        var ly = y - (y % initialBrushSize)
+        array[Int(lx)][Int(ly)] = DrawAction(color: myColor, brushSize: brushSize, point: point)
     }
     
     //

@@ -14,6 +14,13 @@ public class DrawAction {
     var color: NSColor
     var brushSize: CGFloat
     var point: NSPoint
+
+    init() {
+        self.color = NSColor.blueColor()
+        self.brushSize = 10
+        self.point = NSPoint()
+
+    }
     
     init(color: NSColor, brushSize: CGFloat, point: NSPoint) {
         self.color = color
