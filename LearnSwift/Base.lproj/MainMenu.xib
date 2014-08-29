@@ -654,24 +654,21 @@
         <window title="LearnSwift" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="335" y="390" width="655" height="584"/>
+            <rect key="contentRect" x="335" y="390" width="655" height="594"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
             <view key="contentView" wantsLayer="YES" id="EiT-Mj-1SZ">
-                <rect key="frame" x="0.0" y="0.0" width="655" height="584"/>
+                <rect key="frame" x="0.0" y="0.0" width="655" height="594"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
-                    <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F4Q-jm-tfc" customClass="Canvas" customModule="LearnSwift" customModuleProvider="target">
-                        <rect key="frame" x="12" y="40" width="623" height="500"/>
-                    </customView>
                     <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VdF-W3-nJg">
-                        <rect key="frame" x="12" y="548" width="44" height="23"/>
+                        <rect key="frame" x="12" y="558" width="44" height="23"/>
                         <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <connections>
                             <action selector="onColourPicked:" target="Voe-Tx-rLC" id="D6D-oT-ndc"/>
                         </connections>
                     </colorWell>
                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="afa-bQ-LkT">
-                        <rect key="frame" x="596" y="548" width="39" height="22"/>
+                        <rect key="frame" x="596" y="558" width="39" height="22"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="10" drawsBackground="YES" id="JbN-Tx-beF">
                             <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="309" maximumFractionDigits="3" id="Mk1-eE-jBY"/>
                             <font key="font" metaFont="system"/>
@@ -683,7 +680,7 @@
                         </connections>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oSt-zb-8Kr">
-                        <rect key="frame" x="522" y="551" width="69" height="17"/>
+                        <rect key="frame" x="522" y="561" width="69" height="17"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Brush Size" id="7Ax-Vu-dqM">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -691,7 +688,7 @@
                         </textFieldCell>
                     </textField>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="utP-bm-wVh">
-                        <rect key="frame" x="552" y="11" width="83" height="17"/>
+                        <rect key="frame" x="552" y="21" width="83" height="17"/>
                         <shadow key="shadow">
                             <color key="color" red="0.17215098505434778" green="0.16832664678344691" blue="0.15793002422300659" alpha="1" colorSpace="calibratedRGB"/>
                         </shadow>
@@ -707,14 +704,14 @@
                         </connections>
                     </button>
                     <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e8u-g4-pxi">
-                        <rect key="frame" x="12" y="9" width="44" height="23"/>
+                        <rect key="frame" x="12" y="19" width="44" height="23"/>
                         <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <connections>
                             <action selector="onCanvasColourPicked:" target="Voe-Tx-rLC" id="5sg-Gr-jFe"/>
                         </connections>
                     </colorWell>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KsZ-SJ-6X0">
-                        <rect key="frame" x="66" y="12" width="131" height="17"/>
+                        <rect key="frame" x="66" y="22" width="131" height="17"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Canvas colour" id="Cmj-eW-JtY">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -722,7 +719,7 @@
                         </textFieldCell>
                     </textField>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BhR-yI-oGx">
-                        <rect key="frame" x="310" y="11" width="54" height="17"/>
+                        <rect key="frame" x="310" y="21" width="54" height="17"/>
                         <shadow key="shadow">
                             <color key="color" red="0.17215098509999999" green="0.16832664680000001" blue="0.15793002419999999" alpha="1" colorSpace="calibratedRGB"/>
                         </shadow>
@@ -738,7 +735,7 @@
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ljE-aE-Aim">
-                        <rect key="frame" x="247" y="11" width="54" height="17"/>
+                        <rect key="frame" x="247" y="21" width="54" height="17"/>
                         <shadow key="shadow">
                             <color key="color" red="0.17215098509999999" green="0.16832664680000001" blue="0.15793002419999999" alpha="1" colorSpace="calibratedRGB"/>
                         </shadow>
@@ -754,7 +751,7 @@
                         </connections>
                     </button>
                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hIA-1Z-LNe">
-                        <rect key="frame" x="371" y="10" width="40" height="22"/>
+                        <rect key="frame" x="371" y="20" width="40" height="22"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="10" placeholderString="" drawsBackground="YES" id="ZVr-ze-wG1">
                             <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="309" maximumFractionDigits="3" id="qMS-mV-fz7"/>
                             <font key="font" metaFont="system"/>
@@ -763,16 +760,19 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kqz-Fq-Eh0">
-                        <rect key="frame" x="417" y="12" width="38" height="17"/>
+                        <rect key="frame" x="417" y="22" width="38" height="17"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Steps" id="yv7-Kb-gl6">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
+                    <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F4Q-jm-tfc" customClass="Grid" customModule="LearnSwift" customModuleProvider="target">
+                        <rect key="frame" x="12" y="150" width="500" height="400"/>
+                    </customView>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="-306.5" y="147"/>
+            <point key="canvasLocation" x="-564.5" y="211"/>
         </window>
         <viewController id="CIm-V8-wRQ"/>
     </objects>

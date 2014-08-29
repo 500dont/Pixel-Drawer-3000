@@ -12,9 +12,9 @@
 		CC5BA5A0199893BC00049668 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC5BA59F199893BC00049668 /* Images.xcassets */; };
 		CC5BA5A3199893BC00049668 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC5BA5A1199893BC00049668 /* MainMenu.xib */; };
 		CC5BA5AF199893BC00049668 /* LearnSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5BA5AE199893BC00049668 /* LearnSwiftTests.swift */; };
-		CCF601D519A9845800EF5D45 /* Canvas.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF601D419A9845800EF5D45 /* Canvas.swift */; };
-		CCF601D919A9AAE500EF5D45 /* ColorRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF601D819A9AAE500EF5D45 /* ColorRect.swift */; };
-		CCF601DB19AC1AAF00EF5D45 /* DrawAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF601DA19AC1AAF00EF5D45 /* DrawAction.swift */; };
+		CCD8D85719AF8BB000877B5F /* DrawRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD8D85619AF8BB000877B5F /* DrawRecord.swift */; };
+		CCF601D519A9845800EF5D45 /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF601D419A9845800EF5D45 /* Grid.swift */; };
+		CCF601DB19AC1AAF00EF5D45 /* ColorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF601DA19AC1AAF00EF5D45 /* ColorState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,9 +37,9 @@
 		CC5BA5A8199893BC00049668 /* LearnSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LearnSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC5BA5AD199893BC00049668 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CC5BA5AE199893BC00049668 /* LearnSwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnSwiftTests.swift; sourceTree = "<group>"; };
-		CCF601D419A9845800EF5D45 /* Canvas.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Canvas.swift; sourceTree = "<group>"; };
-		CCF601D819A9AAE500EF5D45 /* ColorRect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColorRect.swift; path = LearnSwift/ColorRect.swift; sourceTree = "<group>"; };
-		CCF601DA19AC1AAF00EF5D45 /* DrawAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawAction.swift; sourceTree = "<group>"; };
+		CCD8D85619AF8BB000877B5F /* DrawRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DrawRecord.swift; path = ../DrawRecord.swift; sourceTree = "<group>"; };
+		CCF601D419A9845800EF5D45 /* Grid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
+		CCF601DA19AC1AAF00EF5D45 /* ColorState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,7 +63,6 @@
 		CC5BA58D199893BC00049668 = {
 			isa = PBXGroup;
 			children = (
-				CCF601D819A9AAE500EF5D45 /* ColorRect.swift */,
 				CC5BA598199893BC00049668 /* LearnSwift */,
 				CC5BA5AB199893BC00049668 /* LearnSwiftTests */,
 				CC5BA597199893BC00049668 /* Products */,
@@ -82,12 +81,13 @@
 		CC5BA598199893BC00049668 /* LearnSwift */ = {
 			isa = PBXGroup;
 			children = (
+				CCD8D85619AF8BB000877B5F /* DrawRecord.swift */,
 				CC5BA59D199893BC00049668 /* AppDelegate.swift */,
 				CC5BA59F199893BC00049668 /* Images.xcassets */,
 				CC5BA5A1199893BC00049668 /* MainMenu.xib */,
 				CC5BA599199893BC00049668 /* Supporting Files */,
-				CCF601D419A9845800EF5D45 /* Canvas.swift */,
-				CCF601DA19AC1AAF00EF5D45 /* DrawAction.swift */,
+				CCF601D419A9845800EF5D45 /* Grid.swift */,
+				CCF601DA19AC1AAF00EF5D45 /* ColorState.swift */,
 			);
 			path = LearnSwift;
 			sourceTree = "<group>";
@@ -217,11 +217,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CCF601DB19AC1AAF00EF5D45 /* DrawAction.swift in Sources */,
+				CCF601DB19AC1AAF00EF5D45 /* ColorState.swift in Sources */,
+				CCD8D85719AF8BB000877B5F /* DrawRecord.swift in Sources */,
 				CC5BA59E199893BC00049668 /* AppDelegate.swift in Sources */,
 				CC5BA59C199893BC00049668 /* main.swift in Sources */,
-				CCF601D519A9845800EF5D45 /* Canvas.swift in Sources */,
-				CCF601D919A9AAE500EF5D45 /* ColorRect.swift in Sources */,
+				CCF601D519A9845800EF5D45 /* Grid.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

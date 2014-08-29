@@ -2,16 +2,13 @@
 //  AppDelegate.swift
 //  LearnSwift
 //
-//  Created by Mady Mellor on 8/10/14.
-//  Copyright (c) 2014 Mady Mellor. All rights reserved.
-//
 
 import Cocoa
 
 class AppDelegate: NSObject, NSApplicationDelegate {
                             
     @IBOutlet weak var window: NSWindow!
-    @IBOutlet weak var customView: Canvas!
+    @IBOutlet weak var customView: Grid!
 
     @IBOutlet weak var colourWell: NSColorWell!
     @IBOutlet weak var canvasColourWell: NSColorWell!
