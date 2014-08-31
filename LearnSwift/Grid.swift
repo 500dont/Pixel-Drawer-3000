@@ -55,8 +55,8 @@ public class Grid: NSView {
                 var dr = drawRecords[i]
                 drawSquare(dr.getFirstPoint(), size: CGFloat(dr.getSize()))
             }
-            
             drawAll = false
+            
         } else if (!drawRecords.isEmpty) {
             // Draw the last square added to drawRecords.
             var dr = drawRecords.last!
@@ -150,6 +150,9 @@ public class Grid: NSView {
     }
     
     public func clearScreen() {
+        undoRecords = drawRecords.reverse()
+        drawRecords = []
+        drawAll = true
         needsDisplay = true
     }
     
