@@ -28,7 +28,6 @@ public class Grid: NSView {
     }
     
     override init(frame: NSRect) {
-        self.drawAll = true
         self.canvasColor = NSColor.whiteColor()
         self.selectedColor = NSColor.blueColor()
         self.brushSize = 1
@@ -40,6 +39,8 @@ public class Grid: NSView {
         self.drawRecords = []
         self.undoRecords = []
         self.grid = Array(count: Int(width), repeatedValue: Array(count: Int(height), repeatedValue: nil))
+        
+        self.drawAll = true
         
         super.init(frame: frame)
     }
@@ -56,7 +57,6 @@ public class Grid: NSView {
                 drawSquare(dr.getFirstPoint(), size: CGFloat(dr.getSize()))
             }
             drawAll = false
-            
         } else if (!drawRecords.isEmpty) {
             // Draw the last square added to drawRecords.
             var dr = drawRecords.last!
@@ -179,13 +179,14 @@ public class Grid: NSView {
     //
     
     public func saveScreen(url: NSURL!) {
+        drawAll = true
         var beautifulArtwork = self.bitmapImageRepForCachingDisplayInRect(self.bounds)
         self.cacheDisplayInRect(self.bounds, toBitmapImageRep: beautifulArtwork!)
         var data = beautifulArtwork!.TIFFRepresentation
         var nsData = NSData.self.dataWithData(data)
         nsData.writeToFile(url.path, atomically: false)
     }
-    
+
     //
     // Best debug function ever.
     //

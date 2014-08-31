@@ -790,7 +790,7 @@
                     </button>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="-767.5" y="228"/>
+            <point key="canvasLocation" x="-776.5" y="71"/>
         </window>
         <viewController id="CIm-V8-wRQ"/>
     </objects>
