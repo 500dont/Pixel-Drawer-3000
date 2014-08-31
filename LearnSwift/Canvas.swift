@@ -135,6 +135,7 @@ public class Canvas: NSView {
     public func clearScreen() {
         removedActions = drawActions.reverse()
         drawActions = []
+        drawAll = true
         needsDisplay = true
     }
     
