@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CC09BD2C19B3C2BB00E1F55A /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC5BA5A1199893BC00049668 /* MainMenu.xib */; };
 		CC5BA59C199893BC00049668 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5BA59B199893BC00049668 /* main.swift */; };
 		CC5BA59E199893BC00049668 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5BA59D199893BC00049668 /* AppDelegate.swift */; };
 		CC5BA5A0199893BC00049668 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC5BA59F199893BC00049668 /* Images.xcassets */; };
-		CC5BA5A3199893BC00049668 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC5BA5A1199893BC00049668 /* MainMenu.xib */; };
 		CC5BA5AF199893BC00049668 /* LearnSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5BA5AE199893BC00049668 /* LearnSwiftTests.swift */; };
 		CCD8D85719AF8BB000877B5F /* DrawRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD8D85619AF8BB000877B5F /* DrawRecord.swift */; };
 		CCF601D519A9845800EF5D45 /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF601D419A9845800EF5D45 /* Grid.swift */; };
@@ -198,8 +198,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC09BD2C19B3C2BB00E1F55A /* MainMenu.xib in Resources */,
 				CC5BA5A0199893BC00049668 /* Images.xcassets in Resources */,
-				CC5BA5A3199893BC00049668 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

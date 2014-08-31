@@ -14,6 +14,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var canvasColourWell: NSColorWell!
     @IBOutlet weak var brushSizeView: NSTextField!
     @IBOutlet weak var undoRedoStepsView: NSTextField!
+    @IBOutlet weak var debugButton: NSButton!
 
     func applicationDidFinishLaunching(aNotification: NSNotification?) {
         // Insert code here to initialize your application
@@ -21,6 +22,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationWillTerminate(aNotification: NSNotification?) {
         // Insert code here to tear down your application
+    }
+
+    @IBAction func onDebug(sender: AnyObject) {
+        // Print the contents of the grid.
+        customView.printGrid()
     }
 
     //
@@ -49,11 +55,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @IBAction func onUndo(sender: AnyObject) {
-        customView.removeLastRect(undoRedoStepsView.integerValue)
+        customView.undo(undoRedoStepsView.integerValue)
     }
     
     @IBAction func onRedo(sender: AnyObject) {
-        customView.readdRect(undoRedoStepsView.integerValue)
+        customView.redo(undoRedoStepsView.integerValue)
     }
     
     //

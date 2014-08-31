@@ -16,6 +16,7 @@
                 <outlet property="brushSizeView" destination="afa-bQ-LkT" id="pKu-iR-5v9"/>
                 <outlet property="colourWell" destination="VdF-W3-nJg" id="frZ-BB-ncK"/>
                 <outlet property="customView" destination="F4Q-jm-tfc" id="BG2-jD-L6s"/>
+                <outlet property="debugButton" destination="xvU-Pv-v96" id="kFS-GL-ycg"/>
                 <outlet property="onClearClicked" destination="utP-bm-wVh" id="Rdz-bS-e4P"/>
                 <outlet property="undoRedoSteps" destination="hIA-1Z-LNe" id="HSu-Zo-xUm"/>
                 <outlet property="undoRedoStepsView" destination="hIA-1Z-LNe" id="do8-64-n5e"/>
@@ -669,7 +670,7 @@
                     </colorWell>
                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="afa-bQ-LkT">
                         <rect key="frame" x="596" y="558" width="39" height="22"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="10" drawsBackground="YES" id="JbN-Tx-beF">
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="1" drawsBackground="YES" id="JbN-Tx-beF">
                             <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="309" maximumFractionDigits="3" id="Mk1-eE-jBY"/>
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -770,9 +771,26 @@
                     <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F4Q-jm-tfc" customClass="Grid" customModule="LearnSwift" customModuleProvider="target">
                         <rect key="frame" x="12" y="150" width="500" height="400"/>
                     </customView>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xvU-Pv-v96">
+                        <rect key="frame" x="558" y="523" width="82" height="19"/>
+                        <buttonCell key="cell" type="recessed" title="Debug" bezelStyle="recessed" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5Ds-sB-jBd">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
+                            <font key="font" metaFont="systemBold" size="12"/>
+                        </buttonCell>
+                    </button>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XFK-cY-L6M">
+                        <rect key="frame" x="558" y="523" width="82" height="19"/>
+                        <buttonCell key="cell" type="recessed" title="Debug" bezelStyle="recessed" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="09b-6j-8sA">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
+                            <font key="font" metaFont="systemBold" size="12"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="onDebug:" target="Voe-Tx-rLC" id="FcH-e5-czR"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="-564.5" y="211"/>
+            <point key="canvasLocation" x="-767.5" y="228"/>
         </window>
         <viewController id="CIm-V8-wRQ"/>
     </objects>

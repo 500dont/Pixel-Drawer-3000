@@ -22,14 +22,14 @@ public class ColorState {
         colorIndex = 0
     }
     
-    public func addColor(color: NSColor) {
+    public func addColor(color: NSColor!) {
         colorList.append(color)
         colorIndex += 1
     }
     
     public func getColor() -> NSColor? {
-        if (!colorList.isEmpty) {
-            return colorList.last!
+        if (colorIndex >= 0 && colorList.count > colorIndex) {
+            return colorList[colorIndex]
         }
         return nil
     }
