@@ -73,22 +73,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "LearnSwift/ColorState.swift"
-            timestampString = "430977398.941624"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
-            landmarkName = "getColor()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Grid.swift"
             timestampString = "430970908.980524"
             startingColumnNumber = "9223372036854775807"
@@ -106,7 +90,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LearnSwift/Grid.swift"
-            timestampString = "431220678.40279"
+            timestampString = "431225875.750068"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "60"
@@ -122,13 +106,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LearnSwift/Grid.swift"
-            timestampString = "431220756.781796"
+            timestampString = "431226579.707653"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
-            landmarkName = "Grid"
-            landmarkType = "3">
+            startingLineNumber = "79"
+            endingLineNumber = "79"
+            landmarkName = "drawSquare(_:size:)"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -138,12 +122,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LearnSwift/Grid.swift"
-            timestampString = "431220756.781796"
+            timestampString = "431226579.707653"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "84"
-            endingLineNumber = "84"
-            landmarkName = "drawSquare(_:size:)"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
+            landmarkName = "addSquare(_:withColor:andSize:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

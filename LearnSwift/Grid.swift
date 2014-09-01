@@ -57,10 +57,9 @@ public class Grid: NSView {
                 drawSquare(dr.getFirstPoint(), size: CGFloat(dr.getSize()))
             }
             drawAll = false
-        } else if (!drawRecords.isEmpty) {
-            // Draw the last square added to drawRecords.
-            var dr = drawRecords.last!
-            drawSquare(dr.getFirstPoint(), size: CGFloat(dr.getSize()))
+        } else {
+            var point = NSPoint(x: dirtyRect.origin.x, y: dirtyRect.origin.y)
+            drawSquare(point, size: dirtyRect.size.width)
         }
     }
     
@@ -72,11 +71,15 @@ public class Grid: NSView {
         var x = Int(point.x)
         var y = Int(point.y)
         var andSize = size
-        var withColor = grid[x][y]?.getColor()
+        var withColor = canvasColor
+        
+        if let cs = grid[x][y] {
+            withColor = cs.getColor() ?? canvasColor
+        }
 
         let s = squareSize * andSize
         var r = NSMakeRect(CGFloat(x), CGFloat(y), s, s)
-        withColor!.setFill()
+        withColor.setFill()
         NSRectFill(r)
     }
     
@@ -140,9 +143,29 @@ public class Grid: NSView {
     //
     
     public func undo(goBackBy: NSInteger) {
-        // 1. Move the color pointer back on necessary tiles.
+        var actualGoBack = min(drawRecords.count, goBackBy)
         
-        // 2. Indicate those tiles should be redrawn.
+        for (var i = 0; i < actualGoBack; i++) {
+            // Move record to undo stack.
+            var dr = drawRecords.removeLast()
+            undoRecords.append(dr)
+            
+            // Update color.
+            var point = dr.getFirstPoint()
+            var x = Int(point.x)
+            var y = Int(point.y)
+            var size = dr.getSize()
+            
+            for (var i = x; i < x + size; i++) {
+                for (var j = y; j < y + size; j++) {
+                    if let colorState = grid[i][j] {
+                        colorState.removeColor()
+                    }
+                }
+            }
+        }
+        drawAll = true
+        needsDisplay = true
     }
     
     public func redo(goBackBy: NSInteger) {
