@@ -16,11 +16,13 @@ public class Grid: NSView {
     var height: CGFloat
     var squareSize: CGFloat
     
-    var drawRecords: [DrawRecord]
-    var undoRecords: [DrawRecord]
-    var grid: [[ColorState?]]
+    var grid: [[NSColor?]]
+    var drawActions: [DrawAction]
+    var undoActions: [DrawAction]
     
-    var drawAll: Bool
+    //
+    // MARK: NSView
+    //
     
     required public init(coder: NSCoder) {
         // TODO -- Not sure why this is needed? Swift / cocoa thing?
@@ -36,11 +38,9 @@ public class Grid: NSView {
         self.height = frame.height
         self.squareSize = 10
         
-        self.drawRecords = []
-        self.undoRecords = []
-        self.grid = Array(count: Int(width), repeatedValue: Array(count: Int(height), repeatedValue: nil))
-        
-        self.drawAll = true
+        self.grid = Array(count: Int(width / squareSize), repeatedValue: Array(count: Int(height / squareSize), repeatedValue: nil))
+        self.drawActions = []
+        self.undoActions = []
         
         super.init(frame: frame)
     }
@@ -48,65 +48,56 @@ public class Grid: NSView {
     override public func drawRect(dirtyRect: NSRect) {
         super.drawRect(dirtyRect)
         
-        if (drawAll) {
-            canvasColor.setFill()
-            NSRectFill(self.bounds)
-            
-            for (var i = 0; i < drawRecords.count; i++) {
-                var dr = drawRecords[i]
-                drawSquare(dr.getFirstPoint(), size: CGFloat(dr.getSize()))
-            }
-            drawAll = false
-        } else {
-            var point = NSPoint(x: dirtyRect.origin.x, y: dirtyRect.origin.y)
-            drawSquare(point, size: dirtyRect.size.width)
-        }
-    }
-    
-    //
-    // Handling grid and draw state.
-    //
-    
-    private func drawSquare(point: NSPoint, size: CGFloat) {
-        var x = Int(point.x)
-        var y = Int(point.y)
-        var andSize = size
-        var withColor = canvasColor
+        var aX = Int(dirtyRect.width / squareSize)
+        var aY = Int(dirtyRect.height / squareSize)
+        var x = Int(dirtyRect.origin.x / squareSize)
+        var y = Int(dirtyRect.origin.y / squareSize)
         
-        if let cs = grid[x][y] {
-            withColor = cs.getColor() ?? canvasColor
+        // Set the color in necessary squares.
+        var numX = x + aX
+        var numY = y + aY
+        for (var i = x; i < numX; i++) {
+            for (var j = y; j < numY; j++) {
+                if let color = grid[Int(i)][Int(j)] {
+                    color.setFill()
+                } else {
+                    canvasColor.setFill()
+                }
+                var r = NSMakeRect(CGFloat(i)*squareSize, CGFloat(j)*squareSize, squareSize, squareSize)
+                NSRectFill(r)
+            }
         }
-
-        let s = squareSize * andSize
-        var r = NSMakeRect(CGFloat(x), CGFloat(y), s, s)
-        withColor.setFill()
-        NSRectFill(r)
     }
     
-    private func addSquare(atPoint: NSPoint, withColor: NSColor, andSize: Int) {
+    //
+    // MARK: Handling grid and draw state
+    //
+
+    private func addSquare(atPoint: NSPoint, withColor: NSColor) {
         var point = convertToGridPoint(atPoint)
         var x = Int(point.x)
         var y = Int(point.y)
+
+        // Create the undo grid.
+        var undoGrid = [NSColor?]()
         
-        // Set the color in necessary squares.
-        var addedSize = andSize
-        for (var i = x; i < x + addedSize; i++) {
-            for (var j = y; j < y + addedSize; j++) {
-                if let colorState = grid[i][j] {
-                    colorState.addColor(withColor)
-                } else {
-                    var cs = ColorState(color: withColor)
-                    grid[i][j] = cs
-                }
+        // Update the grid state.
+        var numX = min(x + Int(brushSize), Int(width/squareSize))
+        var numY = min(y + Int(brushSize), Int(height/squareSize))
+        for (var i = x; i < numX; i++) {
+            for (var j = y; j < numY; j++) {
+                undoGrid.append(grid[i][j])
+                grid[i][j] = withColor
             }
         }
         
-        // Update the drawing records.
-        drawRecords.append(DrawRecord(firstPoint: point, size: andSize))
+        // Create the draw action.
+        var canvasPoint = NSPoint(x: point.x*squareSize, y: point.y*squareSize)
+        var dr = DrawAction(origin: canvasPoint, size: brushSize, color: withColor, undo: undoGrid)
+        drawActions.append(dr)
         
         // Let the view know to draw.
-        var size = CGFloat(andSize) * squareSize
-        var r = NSMakeRect(point.x, point.y, size, size)
+        var r = NSMakeRect(CGFloat(x)*squareSize, CGFloat(y)*squareSize, brushSize*squareSize, brushSize*squareSize)
         setNeedsDisplayInRect(r)
     }
     
@@ -115,72 +106,90 @@ public class Grid: NSView {
         var y = point.y
         
         // Get the points locked to grid size.
-        var lx = min(x - (x % squareSize), width - squareSize)
-        var ly = min(y - (y % squareSize), height - squareSize)
-        lx = max(lx, 0)
-        ly = max(ly, 0)
-        return NSPoint(x: lx, y: ly)
+        var lx = max(x - (x % squareSize), 0)
+        var ly = max(y - (y % squareSize), 0)
+        return NSPoint(x: lx / squareSize, y: ly / squareSize)
     }
     
     //
-    // Handling drawing input.
+    // MARK: Handling drawing input
     //
     
     override public func mouseDown(theEvent: NSEvent!) {
         super.mouseDown(theEvent)
         var point = convertPoint(theEvent.locationInWindow, fromView:nil)
-        addSquare(point, withColor: selectedColor, andSize: Int(brushSize))
+        addSquare(point, withColor: selectedColor)
     }
     
     override public func mouseDragged(theEvent: NSEvent!) {
         super.mouseDragged(theEvent)
         var point = convertPoint(theEvent.locationInWindow, fromView:nil)
-        addSquare(point, withColor: selectedColor, andSize: Int(brushSize))
+        addSquare(point, withColor: selectedColor)
     }
     
     //
-    // Undo / redo / clear.
+    // MARK: Undo / redo / clear
     //
     
     public func undo(goBackBy: NSInteger) {
-        var actualGoBack = min(drawRecords.count, goBackBy)
-        
+        var actualGoBack = min(drawActions.count, goBackBy)
         for (var i = 0; i < actualGoBack; i++) {
-            // Move record to undo stack.
-            var dr = drawRecords.removeLast()
-            undoRecords.append(dr)
-            
-            // Update color.
-            var point = dr.getFirstPoint()
-            var x = Int(point.x)
-            var y = Int(point.y)
-            var size = dr.getSize()
-            
-            for (var i = x; i < x + size; i++) {
-                for (var j = y; j < y + size; j++) {
-                    if let colorState = grid[i][j] {
-                        colorState.removeColor()
-                    }
-                }
-            }
+            var da = drawActions.removeLast()
+            applyUndo(da)
+            undoActions.append(da)
         }
-        drawAll = true
         needsDisplay = true
     }
     
-    public func redo(goBackBy: NSInteger) {
-        // TODO
+    public func redo(goForward: NSInteger) {
+        var actualGoForward = min(undoActions.count, goForward)
+        for (var i = 0; i < actualGoForward; i++) {
+            var da = undoActions.removeLast()
+            applyRedo(da)
+            drawActions.append(da)
+        }
+        needsDisplay = true
+    }
+    
+    private func applyUndo(da: DrawAction) {
+        var (point, undoGrid, size) = da.getUndoRect()
+        
+        var x = Int(point.x / squareSize)
+        var y = Int(point.y / squareSize)
+        
+        // Set the color in necessary squares.
+        var numX = x + Int(size)
+        var numY = y + Int(size)
+        for (var i = x; i < numX; i++) {
+            for (var j = y; j < numY; j++) {
+                // Grid is reversed in getUndoRect() so removeLast is ok.
+                var c = undoGrid.removeLast()
+                grid[Int(i)][Int(j)] = c
+            }
+        }
+    }
+    
+    private func applyRedo(da: DrawAction) {
+        var (point, color, size) = da.getRedoRect()
+        var x = Int(point.x / squareSize)
+        var y = Int(point.y / squareSize)
+        
+        // Set the color in necessary squares.
+        var numX = x + Int(size)
+        var numY = y + Int(size)
+        for (var i = x; i < numX; i++) {
+            for (var j = y; j < numY; j++) {
+                grid[Int(i)][Int(j)] = color
+            }
+        }
     }
     
     public func clearScreen() {
-        undoRecords = drawRecords.reverse()
-        drawRecords = []
-        drawAll = true
         needsDisplay = true
     }
     
     //
-    // Set user specified options.
+    // MARK: Set user specified options
     //
     
     public func setColour(color: NSColor) {
@@ -189,7 +198,6 @@ public class Grid: NSView {
     
     public func setCanvasColour(color: NSColor) {
         canvasColor = color
-        drawAll = true
         needsDisplay = true
     }
     
@@ -198,11 +206,10 @@ public class Grid: NSView {
     }
     
     //
-    // Save screen.
+    // MARK: Save screen
     //
     
     public func saveScreen(url: NSURL!) {
-        drawAll = true
         var beautifulArtwork = self.bitmapImageRepForCachingDisplayInRect(self.bounds)
         self.cacheDisplayInRect(self.bounds, toBitmapImageRep: beautifulArtwork!)
         var data = beautifulArtwork!.TIFFRepresentation
@@ -211,26 +218,22 @@ public class Grid: NSView {
     }
 
     //
-    // Best debug function ever.
+    // MARK: Best debug function ever
     //
     public func printGrid() {
         var colorInt = 0
         var prevColors = [NSColor: Int]()
         var stringArray = [String]()
-        for (var i = 0; i < Int(width); i++) {
+        for (var i = 0; i < Int(width/squareSize); i++) {
             var rowString = "row " + i.description + ": "
-            for (var j = 0; j < Int(height); j++) {
-                if let colorState = grid[i][j] {
-                    if let c = colorState.getColor() {
-                        if let thisColor = prevColors[c] {
-                            rowString += "[" + thisColor.description + "]"
-                        } else {
-                            prevColors[c] = colorInt
-                            colorInt += 1
-                            rowString += "[" + colorInt.description + "]"
-                        }
+            for (var j = 0; j < Int(height/squareSize); j++) {
+                if let c = grid[i][j] {
+                    if let thisColor = prevColors[c] {
+                        rowString += "[" + thisColor.description + "]"
                     } else {
-                        rowString += "[_]"
+                        colorInt += 1
+                        prevColors[c] = colorInt
+                        rowString += "[" + colorInt.description + "]"
                     }
                 } else {
                     rowString += "[_]"
