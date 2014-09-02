@@ -16,7 +16,6 @@
                 <outlet property="brushSizeView" destination="afa-bQ-LkT" id="pKu-iR-5v9"/>
                 <outlet property="colourWell" destination="VdF-W3-nJg" id="frZ-BB-ncK"/>
                 <outlet property="customView" destination="F4Q-jm-tfc" id="BG2-jD-L6s"/>
-                <outlet property="gridSizeView" destination="yeF-R7-kjU" id="Gud-ec-udL"/>
                 <outlet property="onClearClicked" destination="utP-bm-wVh" id="Rdz-bS-e4P"/>
                 <outlet property="undoRedoSteps" destination="hIA-1Z-LNe" id="HSu-Zo-xUm"/>
                 <outlet property="undoRedoStepsView" destination="hIA-1Z-LNe" id="do8-64-n5e"/>
@@ -192,28 +191,28 @@
         <window title="Tools" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" animationBehavior="default" id="V8C-xN-ghH" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="167" y="107" width="141" height="272"/>
+            <rect key="contentRect" x="167" y="107" width="141" height="251"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
             <view key="contentView" wantsLayer="YES" id="uJ6-bI-FUv">
-                <rect key="frame" x="0.0" y="0.0" width="141" height="272"/>
+                <rect key="frame" x="0.0" y="0.0" width="141" height="251"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <colorWell toolTip="Brush colour" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VdF-W3-nJg">
-                        <rect key="frame" x="8" y="230" width="38" height="35"/>
+                        <rect key="frame" x="8" y="209" width="38" height="35"/>
                         <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <connections>
                             <action selector="onColourPicked:" target="Voe-Tx-rLC" id="D6D-oT-ndc"/>
                         </connections>
                     </colorWell>
                     <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e8u-g4-pxi">
-                        <rect key="frame" x="8" y="187" width="38" height="35"/>
+                        <rect key="frame" x="8" y="166" width="38" height="35"/>
                         <color key="color" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <connections>
                             <action selector="onCanvasColourPicked:" target="Voe-Tx-rLC" id="5sg-Gr-jFe"/>
                         </connections>
                     </colorWell>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KsZ-SJ-6X0">
-                        <rect key="frame" x="52" y="197" width="131" height="14"/>
+                        <rect key="frame" x="52" y="176" width="131" height="14"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Canvas" id="Cmj-eW-JtY">
                             <font key="font" metaFont="smallSystemBold"/>
                             <color key="textColor" red="0.39567764945652173" green="0.39567764945652173" blue="0.39567764945652173" alpha="1" colorSpace="calibratedRGB"/>
@@ -221,7 +220,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8pJ-zS-7jw">
-                        <rect key="frame" x="52" y="147" width="131" height="14"/>
+                        <rect key="frame" x="52" y="126" width="131" height="14"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Brush size" id="8Hv-PU-Z69">
                             <font key="font" metaFont="smallSystemBold"/>
                             <color key="textColor" red="0.39567764950000001" green="0.39567764950000001" blue="0.39567764950000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -229,7 +228,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tHr-j6-NJv">
-                        <rect key="frame" x="52" y="240" width="131" height="14"/>
+                        <rect key="frame" x="52" y="219" width="131" height="14"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Brush" id="d8t-MH-EIy">
                             <font key="font" metaFont="smallSystemBold"/>
                             <color key="textColor" red="0.39567764950000001" green="0.39567764950000001" blue="0.39567764950000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -237,7 +236,7 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="afa-bQ-LkT">
-                        <rect key="frame" x="8" y="143" width="38" height="22"/>
+                        <rect key="frame" x="8" y="122" width="38" height="22"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="1" drawsBackground="YES" id="JbN-Tx-beF">
                             <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="309" maximumFractionDigits="3" id="Mk1-eE-jBY"/>
                             <font key="font" metaFont="system"/>
@@ -248,28 +247,8 @@
                             <action selector="onBrushSizedChanged:" target="Voe-Tx-rLC" id="Ds3-hu-3Sv"/>
                         </connections>
                     </textField>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZWA-uh-PPu">
-                        <rect key="frame" x="52" y="121" width="131" height="14"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Grid size" id="Tm9-Nd-Met">
-                            <font key="font" metaFont="smallSystemBold"/>
-                            <color key="textColor" red="0.39567764950000001" green="0.39567764950000001" blue="0.39567764950000001" alpha="1" colorSpace="calibratedRGB"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yeF-R7-kjU">
-                        <rect key="frame" x="8" y="117" width="38" height="22"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="10" drawsBackground="YES" id="mXO-Lw-941">
-                            <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="309" maximumFractionDigits="3" id="Rim-uc-wRx"/>
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                        <connections>
-                            <action selector="onGridSizeChanged:" target="Voe-Tx-rLC" id="pyb-pU-csD"/>
-                        </connections>
-                    </textField>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BhR-yI-oGx">
-                        <rect key="frame" x="74" y="43" width="58" height="25"/>
+                        <rect key="frame" x="74" y="50" width="58" height="25"/>
                         <shadow key="shadow">
                             <color key="color" red="0.17215098509999999" green="0.16832664680000001" blue="0.15793002419999999" alpha="1" colorSpace="calibratedRGB"/>
                         </shadow>
@@ -285,7 +264,7 @@
                         </connections>
                     </button>
                     <button wantsLayer="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ljE-aE-Aim">
-                        <rect key="frame" x="8" y="43" width="58" height="25"/>
+                        <rect key="frame" x="8" y="50" width="58" height="25"/>
                         <shadow key="shadow">
                             <color key="color" red="0.17215098509999999" green="0.16832664680000001" blue="0.15793002419999999" alpha="1" colorSpace="calibratedRGB"/>
                         </shadow>
@@ -301,7 +280,7 @@
                         </connections>
                     </button>
                     <textField toolTip="The number of squares that will be undo / redone" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hIA-1Z-LNe">
-                        <rect key="frame" x="8" y="72" width="38" height="22"/>
+                        <rect key="frame" x="8" y="79" width="38" height="22"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" title="10" placeholderString="" drawsBackground="YES" id="ZVr-ze-wG1">
                             <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="309" maximumFractionDigits="3" id="qMS-mV-fz7"/>
                             <font key="font" metaFont="system"/>
@@ -310,7 +289,7 @@
                         </textFieldCell>
                     </textField>
                     <textField toolTip="The number of squares that will be undo / redone" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nly-MI-pbr">
-                        <rect key="frame" x="52" y="75" width="131" height="14"/>
+                        <rect key="frame" x="52" y="82" width="131" height="14"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Squares" id="o03-3c-04e">
                             <font key="font" metaFont="smallSystemBold"/>
                             <color key="textColor" red="0.39567764950000001" green="0.39567764950000001" blue="0.39567764950000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -318,7 +297,7 @@
                         </textFieldCell>
                     </textField>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="utP-bm-wVh">
-                        <rect key="frame" x="8" y="12" width="124" height="25"/>
+                        <rect key="frame" x="8" y="19" width="124" height="25"/>
                         <shadow key="shadow">
                             <color key="color" red="0.17215098505434778" green="0.16832664678344691" blue="0.15793002422300659" alpha="1" colorSpace="calibratedRGB"/>
                         </shadow>
@@ -334,20 +313,20 @@
                         </connections>
                     </button>
                     <box autoresizesSubviews="NO" verticalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="iOv-Hw-2ys">
-                        <rect key="frame" x="5" y="172" width="132" height="5"/>
+                        <rect key="frame" x="5" y="151" width="132" height="5"/>
                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <font key="titleFont" metaFont="system"/>
                     </box>
                     <box autoresizesSubviews="NO" verticalHuggingPriority="750" fixedFrame="YES" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="1Ou-BK-3Z4">
-                        <rect key="frame" x="5" y="103" width="132" height="5"/>
+                        <rect key="frame" x="5" y="110" width="132" height="5"/>
                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <font key="titleFont" metaFont="system"/>
                     </box>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="-2453.5" y="-648"/>
+            <point key="canvasLocation" x="-2453.5" y="-658.5"/>
         </window>
         <window title="LearnSwift" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
