@@ -6,6 +6,8 @@
 import Cocoa
 
 class AppDelegate: NSObject, NSApplicationDelegate {
+    
+    var DEBUG = false
                             
     @IBOutlet weak var window: NSWindow!
     @IBOutlet weak var customView: Grid!
@@ -17,7 +19,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var debugButton: NSButton!
 
     func applicationDidFinishLaunching(aNotification: NSNotification?) {
-        // Insert code here to initialize your application
+        if (!DEBUG) {
+            debugButton.hidden = true
+        }
     }
 
     func applicationWillTerminate(aNotification: NSNotification?) {

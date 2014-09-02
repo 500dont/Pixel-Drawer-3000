@@ -30,17 +30,17 @@ public class Grid: NSView {
     }
     
     override init(frame: NSRect) {
-        self.canvasColor = NSColor.whiteColor()
-        self.selectedColor = NSColor.blueColor()
-        self.brushSize = 1
+        canvasColor = NSColor.whiteColor()
+        selectedColor = NSColor.blueColor()
+        brushSize = 1
         
-        self.width = frame.width
-        self.height = frame.height
-        self.squareSize = 10
+        width = frame.width
+        height = frame.height
+        squareSize = 10
         
-        self.grid = Array(count: Int(width / squareSize), repeatedValue: Array(count: Int(height / squareSize), repeatedValue: nil))
-        self.drawActions = []
-        self.undoActions = []
+        grid = Array(count: Int(width / squareSize), repeatedValue: Array(count: Int(height / squareSize), repeatedValue: nil))
+        drawActions = []
+        undoActions = []
         
         super.init(frame: frame)
     }
@@ -148,9 +148,10 @@ public class Grid: NSView {
             applyRedo(da)
             drawActions.append(da)
         }
+        
         needsDisplay = true
     }
-    
+
     private func applyUndo(da: DrawAction) {
         var (point, undoGrid, size) = da.getUndoRect()
         
@@ -185,6 +186,9 @@ public class Grid: NSView {
     }
     
     public func clearScreen() {
+        // Clear screen.
+        grid = Array(count: Int(width / squareSize), repeatedValue: Array(count: Int(height / squareSize), repeatedValue: nil))
+
         needsDisplay = true
     }
     
