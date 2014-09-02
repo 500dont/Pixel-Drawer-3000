@@ -74,31 +74,38 @@ public class Grid: NSView {
     //
 
     private func addSquare(atPoint: NSPoint, withColor: NSColor) {
-        var point = convertToGridPoint(atPoint)
-        var x = Int(point.x)
-        var y = Int(point.y)
+        let point = convertToGridPoint(atPoint)
+        let x = Int(point.x)
+        let y = Int(point.y)
 
+        var allMatch = true
+        
         // Create the undo grid.
         var undoGrid = [NSColor?]()
         
         // Update the grid state.
-        var numX = min(x + Int(brushSize), Int(width/squareSize))
-        var numY = min(y + Int(brushSize), Int(height/squareSize))
+        let numX = min(x + Int(brushSize), Int(width/squareSize))
+        let numY = min(y + Int(brushSize), Int(height/squareSize))
         for (var i = x; i < numX; i++) {
             for (var j = y; j < numY; j++) {
                 undoGrid.append(grid[i][j])
+                if (grid[i][j] != withColor) {
+                    allMatch = false
+                }
                 grid[i][j] = withColor
             }
         }
         
         // Create the draw action.
-        var canvasPoint = NSPoint(x: point.x*squareSize, y: point.y*squareSize)
-        var dr = DrawAction(origin: canvasPoint, size: brushSize, color: withColor, undo: undoGrid)
-        drawActions.append(dr)
-        
-        // Let the view know to draw.
-        var r = NSMakeRect(CGFloat(x)*squareSize, CGFloat(y)*squareSize, brushSize*squareSize, brushSize*squareSize)
-        setNeedsDisplayInRect(r)
+        if (!allMatch) {
+            let canvasPoint = NSPoint(x: point.x*squareSize, y: point.y*squareSize)
+            let dr = DrawAction(origin: canvasPoint, size: brushSize, color: withColor, undo: undoGrid)
+            drawActions.append(dr)
+            
+            // Let the view know to draw.
+            let r = NSMakeRect(CGFloat(x)*squareSize, CGFloat(y)*squareSize, brushSize*squareSize, brushSize*squareSize)
+            setNeedsDisplayInRect(r)
+        }
     }
     
     private func convertToGridPoint(point: NSPoint) -> NSPoint {
