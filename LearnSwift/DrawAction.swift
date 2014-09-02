@@ -9,27 +9,29 @@ import Foundation
 public class DrawAction {
     
     var origin: NSPoint
-    var size: CGFloat
-    var color: NSColor
+    var width: CGFloat
+    var height: CGFloat
+    var color: NSColor?
     
     var undoGrid: [NSColor?]
     
-    init(origin: NSPoint, size: CGFloat, color: NSColor, undo: [NSColor?]) {
+    init(origin:NSPoint, width: CGFloat, height: CGFloat, color: NSColor?, undo: [NSColor?]) {
         self.origin = origin
-        self.size = size
+        self.width = width
+        self.height = height
         self.color = color
         self.undoGrid = undo
     }
     
-    public func getUndoRect() -> (NSPoint, [NSColor?], CGFloat) {
-        return (origin, undoGrid.reverse(), size)
+    public func getUndoRect() -> (NSPoint, [NSColor?], CGFloat, CGFloat) {
+        return (origin, undoGrid.reverse(), width, height)
     }
     
-    public func getRedoRect() -> (NSPoint, NSColor, CGFloat) {
-        return (origin, color, size)
+    public func getRedoRect() -> (NSPoint, NSColor?, CGFloat, CGFloat) {
+        return (origin, color, width, height)
     }
     
     public func getRect(squareSize: CGFloat) -> NSRect {
-        return NSMakeRect(origin.x, origin.y, size*squareSize, size*squareSize)
+        return NSMakeRect(origin.x, origin.y, width*squareSize, height*squareSize)
     }
 }

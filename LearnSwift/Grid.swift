@@ -48,14 +48,14 @@ public class Grid: NSView {
     override public func drawRect(dirtyRect: NSRect) {
         super.drawRect(dirtyRect)
         
-        var aX = Int(dirtyRect.width / squareSize)
-        var aY = Int(dirtyRect.height / squareSize)
-        var x = Int(dirtyRect.origin.x / squareSize)
-        var y = Int(dirtyRect.origin.y / squareSize)
+        let aX = Int(dirtyRect.width / squareSize)
+        let aY = Int(dirtyRect.height / squareSize)
+        let x = Int(dirtyRect.origin.x / squareSize)
+        let y = Int(dirtyRect.origin.y / squareSize)
         
         // Set the color in necessary squares.
-        var numX = x + aX
-        var numY = y + aY
+        let numX = x + aX
+        let numY = y + aY
         for (var i = x; i < numX; i++) {
             for (var j = y; j < numY; j++) {
                 if let color = grid[Int(i)][Int(j)] {
@@ -63,7 +63,7 @@ public class Grid: NSView {
                 } else {
                     canvasColor.setFill()
                 }
-                var r = NSMakeRect(CGFloat(i)*squareSize, CGFloat(j)*squareSize, squareSize, squareSize)
+                let r = NSMakeRect(CGFloat(i)*squareSize, CGFloat(j)*squareSize, squareSize, squareSize)
                 NSRectFill(r)
             }
         }
@@ -78,6 +78,7 @@ public class Grid: NSView {
         let x = Int(point.x)
         let y = Int(point.y)
 
+        // Only record actions if they are different.
         var allMatch = true
         
         // Create the undo grid.
@@ -98,8 +99,12 @@ public class Grid: NSView {
         
         // Create the draw action.
         if (!allMatch) {
+            // Empty our undo stack - if the user has undid something and than drawn something
+            // it makes most sense to clear it.
+            undoActions = []
+            
             let canvasPoint = NSPoint(x: point.x*squareSize, y: point.y*squareSize)
-            let dr = DrawAction(origin: canvasPoint, size: brushSize, color: withColor, undo: undoGrid)
+            let dr = DrawAction(origin: canvasPoint, width: brushSize, height: brushSize, color: withColor, undo: undoGrid)
             drawActions.append(dr)
             
             // Let the view know to draw.
@@ -109,12 +114,12 @@ public class Grid: NSView {
     }
     
     private func convertToGridPoint(point: NSPoint) -> NSPoint {
-        var x = point.x
-        var y = point.y
+        let x = point.x
+        let y = point.y
         
         // Get the points locked to grid size.
-        var lx = max(x - (x % squareSize), 0)
-        var ly = max(y - (y % squareSize), 0)
+        let lx = max(x - (x % squareSize), 0)
+        let ly = max(y - (y % squareSize), 0)
         return NSPoint(x: lx / squareSize, y: ly / squareSize)
     }
     
@@ -124,13 +129,13 @@ public class Grid: NSView {
     
     override public func mouseDown(theEvent: NSEvent!) {
         super.mouseDown(theEvent)
-        var point = convertPoint(theEvent.locationInWindow, fromView:nil)
+        let point = convertPoint(theEvent.locationInWindow, fromView:nil)
         addSquare(point, withColor: selectedColor)
     }
     
     override public func mouseDragged(theEvent: NSEvent!) {
         super.mouseDragged(theEvent)
-        var point = convertPoint(theEvent.locationInWindow, fromView:nil)
+        let point = convertPoint(theEvent.locationInWindow, fromView:nil)
         addSquare(point, withColor: selectedColor)
     }
     
@@ -139,9 +144,9 @@ public class Grid: NSView {
     //
     
     public func undo(goBackBy: NSInteger) {
-        var actualGoBack = min(drawActions.count, goBackBy)
+        let actualGoBack = min(drawActions.count, goBackBy)
         for (var i = 0; i < actualGoBack; i++) {
-            var da = drawActions.removeLast()
+            let da = drawActions.removeLast()
             applyUndo(da)
             undoActions.append(da)
         }
@@ -149,9 +154,9 @@ public class Grid: NSView {
     }
     
     public func redo(goForward: NSInteger) {
-        var actualGoForward = min(undoActions.count, goForward)
+        let actualGoForward = min(undoActions.count, goForward)
         for (var i = 0; i < actualGoForward; i++) {
-            var da = undoActions.removeLast()
+            let da = undoActions.removeLast()
             applyRedo(da)
             drawActions.append(da)
         }
@@ -160,31 +165,31 @@ public class Grid: NSView {
     }
 
     private func applyUndo(da: DrawAction) {
-        var (point, undoGrid, size) = da.getUndoRect()
+        var (point, undoGrid, width, height) = da.getUndoRect()
         
-        var x = Int(point.x / squareSize)
-        var y = Int(point.y / squareSize)
+        let x = Int(point.x / squareSize)
+        let y = Int(point.y / squareSize)
         
         // Set the color in necessary squares.
-        var numX = x + Int(size)
-        var numY = y + Int(size)
+        let numX = x + Int(width)
+        let numY = y + Int(height)
         for (var i = x; i < numX; i++) {
             for (var j = y; j < numY; j++) {
                 // Grid is reversed in getUndoRect() so removeLast is ok.
-                var c = undoGrid.removeLast()
+                let c = undoGrid.removeLast()
                 grid[Int(i)][Int(j)] = c
             }
         }
     }
     
     private func applyRedo(da: DrawAction) {
-        var (point, color, size) = da.getRedoRect()
-        var x = Int(point.x / squareSize)
-        var y = Int(point.y / squareSize)
+        var (point, color, width, height) = da.getRedoRect()
+        let x = Int(point.x / squareSize)
+        let y = Int(point.y / squareSize)
         
         // Set the color in necessary squares.
-        var numX = x + Int(size)
-        var numY = y + Int(size)
+        let numX = x + Int(width)
+        let numY = y + Int(height)
         for (var i = x; i < numX; i++) {
             for (var j = y; j < numY; j++) {
                 grid[Int(i)][Int(j)] = color
@@ -193,8 +198,18 @@ public class Grid: NSView {
     }
     
     public func clearScreen() {
-        // Clear screen.
-        grid = Array(count: Int(width / squareSize), repeatedValue: Array(count: Int(height / squareSize), repeatedValue: nil))
+        // Create the undo grid.
+        var undoGrid = [NSColor?]()
+        
+        // Update the grid state.
+        for (var i = 0; i < Int(width/squareSize); i++) {
+            for (var j = 0; j < Int(height/squareSize); j++) {
+                undoGrid.append(grid[i][j])
+                grid[i][j] = nil
+            }
+        }
+        let da = DrawAction(origin: NSPoint(x: 0,y: 0), width: width/squareSize, height: height/squareSize, color: nil, undo: undoGrid)
+        drawActions.append(da)
 
         needsDisplay = true
     }
