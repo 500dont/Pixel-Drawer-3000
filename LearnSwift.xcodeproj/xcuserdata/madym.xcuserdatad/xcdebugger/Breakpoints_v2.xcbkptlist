@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LearnSwift/AppDelegate.swift"
-            timestampString = "431321672.058532"
+            timestampString = "431335314.061248"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
             landmarkName = "onDebug(_:)"
             landmarkType = "5">
          </BreakpointContent>

@@ -231,6 +231,11 @@ public class Grid: NSView {
         brushSize = size
     }
     
+    public func setGridSize(size: CGFloat) {
+        squareSize = size
+        needsDisplay = true
+    }
+    
     //
     // MARK: Save screen
     //

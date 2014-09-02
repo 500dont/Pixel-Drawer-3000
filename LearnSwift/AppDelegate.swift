@@ -15,13 +15,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var colourWell: NSColorWell!
     @IBOutlet weak var canvasColourWell: NSColorWell!
     @IBOutlet weak var brushSizeView: NSTextField!
+    @IBOutlet weak var gridSizeView: NSTextField!
     @IBOutlet weak var undoRedoStepsView: NSTextField!
-    @IBOutlet weak var debugButton: NSButton!
 
     func applicationDidFinishLaunching(aNotification: NSNotification?) {
-        if (!DEBUG) {
-            debugButton.hidden = true
-        }
     }
 
     func applicationWillTerminate(aNotification: NSNotification?) {
@@ -46,8 +43,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @IBAction func onBrushSizedChanged(sender: AnyObject) {
-        var size = brushSizeView.integerValue
+        let size = brushSizeView.integerValue
         customView.setBrushSize(CGFloat(size))
+    }
+    
+    @IBAction func onGridSizeChanged(sender: AnyObject) {
+        let size = gridSizeView.integerValue
+        customView.setGridSize(CGFloat(size))
     }
     
     //
@@ -86,6 +88,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                 self.customView.saveScreen(exportedFileURL)
             }
         }
+    }
+    
+    private func saveProgress() {
+        
     }
 }
 
