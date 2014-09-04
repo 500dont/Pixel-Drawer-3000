@@ -1,12 +1,12 @@
 //
-//  Grid.swift
+//  CanvasView.swift
 //  LearnSwift
 //
 
 import Cocoa
 import Foundation
 
-public class Grid: NSView {
+public class CanvasView: NSView {
     
     var appDelegate: AppDelegate?
     

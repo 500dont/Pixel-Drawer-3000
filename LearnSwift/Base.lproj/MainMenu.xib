@@ -191,10 +191,10 @@
         <window title="Tools" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" animationBehavior="default" id="V8C-xN-ghH" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="167" y="107" width="141" height="251"/>
+            <rect key="contentRect" x="0.0" y="725" width="141" height="259"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
             <view key="contentView" wantsLayer="YES" id="uJ6-bI-FUv">
-                <rect key="frame" x="0.0" y="0.0" width="141" height="251"/>
+                <rect key="frame" x="0.0" y="0.0" width="141" height="259"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <colorWell toolTip="Brush colour" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VdF-W3-nJg">
@@ -326,18 +326,19 @@
                     </box>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="-2453.5" y="-658.5"/>
+            <point key="canvasLocation" x="-2797.5" y="-769.5"/>
         </window>
         <window title="LearnSwift" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="335" y="390" width="520" height="421"/>
+            <rect key="contentRect" x="184" y="569" width="520" height="421"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
+            <value key="minSize" type="size" width="520" height="421"/>
             <view key="contentView" wantsLayer="YES" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="520" height="421"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
-                    <customView ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F4Q-jm-tfc" customClass="Grid" customModule="LearnSwift" customModuleProvider="target">
+                    <customView ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F4Q-jm-tfc" customClass="CanvasView" customModule="LearnSwift" customModuleProvider="target">
                         <rect key="frame" x="8" y="12" width="500" height="400"/>
                     </customView>
                 </subviews>
@@ -345,7 +346,7 @@
                     <constraint firstItem="F4Q-jm-tfc" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="12" id="ldX-7K-nWx"/>
                 </constraints>
             </view>
-            <point key="canvasLocation" x="-2068" y="-573.5"/>
+            <point key="canvasLocation" x="-2422" y="-688.5"/>
         </window>
         <viewController id="CIm-V8-wRQ"/>
     </objects>

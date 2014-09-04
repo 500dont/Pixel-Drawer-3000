@@ -10,7 +10,7 @@ public class AppDelegate: NSObject, NSApplicationDelegate {
     var DEBUG = false
                             
     @IBOutlet weak var window: NSWindow!
-    @IBOutlet weak var customView: Grid!
+    @IBOutlet weak var customView: CanvasView!
 
     @IBOutlet weak var colorPalette: NSColorWell!
     @IBOutlet weak var canvasColourWell: NSColorWell!
