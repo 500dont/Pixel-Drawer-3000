@@ -8,8 +8,13 @@
 
 import Cocoa
 import XCTest
+import LearnSwift
+import Foundation
 
 class LearnSwiftTests: XCTestCase {
+    
+    //let appDelegate = NSApplication.sharedApplication().delegate as AppDelegate
+    var appDelegate: AppDelegate = AppDelegate()
     
     override func setUp() {
         super.setUp()
@@ -23,6 +28,7 @@ class LearnSwiftTests: XCTestCase {
     
     func testExample() {
         // This is an example of a functional test case.
+        appDelegate.customView.clearScreen()
         XCTAssert(true, "Pass")
     }
     

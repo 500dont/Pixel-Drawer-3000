@@ -8,6 +8,8 @@ import Foundation
 
 public class Grid: NSView {
     
+    var appDelegate: AppDelegate?
+    
     var canvasColor: NSColor
     var selectedColor: NSColor
     var brushSize: CGFloat
@@ -24,12 +26,18 @@ public class Grid: NSView {
     // MARK: NSView
     //
     
-    required public init(coder: NSCoder) {
+    public required init(coder: NSCoder) {
         // TODO -- Not sure why this is needed? Swift / cocoa thing?
         fatalError("NSCoding not supported")
     }
     
+    public func setAppDelegate(appDel: AppDelegate) {
+        appDelegate = appDel
+    }
+    
     override init(frame: NSRect) {
+        appDelegate = nil // Set later.
+        
         canvasColor = NSColor.whiteColor()
         selectedColor = NSColor.blueColor()
         brushSize = 1
@@ -73,8 +81,8 @@ public class Grid: NSView {
     // MARK: Handling grid and draw state
     //
 
-    private func addSquare(atPoint: NSPoint, withColor: NSColor) {
-        let point = convertToGridPoint(atPoint)
+    private func addSquare(theEvent: NSEvent!, withColor: NSColor) {
+        let point = convertToGridPoint(theEvent)
         let x = Int(point.x)
         let y = Int(point.y)
 
@@ -113,7 +121,8 @@ public class Grid: NSView {
         }
     }
     
-    private func convertToGridPoint(point: NSPoint) -> NSPoint {
+    private func convertToGridPoint(theEvent: NSEvent!) -> NSPoint {
+        let point = convertPoint(theEvent.locationInWindow, fromView:nil)
         let x = point.x
         let y = point.y
         
@@ -130,13 +139,26 @@ public class Grid: NSView {
     override public func mouseDown(theEvent: NSEvent!) {
         super.mouseDown(theEvent)
         let point = convertPoint(theEvent.locationInWindow, fromView:nil)
-        addSquare(point, withColor: selectedColor)
+        addSquare(theEvent, withColor: selectedColor)
     }
     
     override public func mouseDragged(theEvent: NSEvent!) {
         super.mouseDragged(theEvent)
         let point = convertPoint(theEvent.locationInWindow, fromView:nil)
-        addSquare(point, withColor: selectedColor)
+        addSquare(theEvent, withColor: selectedColor)
+    }
+    
+    override public func rightMouseDown(theEvent: NSEvent!) {
+        super.rightMouseDown(theEvent)
+        let point = convertToGridPoint(theEvent)//.locationInWindow), fromView:nil)
+        let x = Int(point.x)
+        let y = Int(point.y)
+        
+        if let color = grid[x][y] {
+            self.setColor(color)
+            // Safe to unpack appDelegate here - can't click the view if it hasn't been set.
+            appDelegate!.setPaletteColor(color)
+        }
     }
     
     //
@@ -218,7 +240,7 @@ public class Grid: NSView {
     // MARK: Set user specified options
     //
     
-    public func setColour(color: NSColor) {
+    public func setColor(color: NSColor) {
         selectedColor = color
     }
     

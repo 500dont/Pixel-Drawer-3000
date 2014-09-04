@@ -14,7 +14,7 @@
         <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="LearnSwift" customModuleProvider="target">
             <connections>
                 <outlet property="brushSizeView" destination="afa-bQ-LkT" id="pKu-iR-5v9"/>
-                <outlet property="colourWell" destination="VdF-W3-nJg" id="frZ-BB-ncK"/>
+                <outlet property="colorPalette" destination="VdF-W3-nJg" id="zEj-oa-WaE"/>
                 <outlet property="customView" destination="F4Q-jm-tfc" id="BG2-jD-L6s"/>
                 <outlet property="onClearClicked" destination="utP-bm-wVh" id="Rdz-bS-e4P"/>
                 <outlet property="undoRedoSteps" destination="hIA-1Z-LNe" id="HSu-Zo-xUm"/>

@@ -5,37 +5,45 @@
 
 import Cocoa
 
-class AppDelegate: NSObject, NSApplicationDelegate {
+public class AppDelegate: NSObject, NSApplicationDelegate {
     
     var DEBUG = false
                             
     @IBOutlet weak var window: NSWindow!
     @IBOutlet weak var customView: Grid!
 
-    @IBOutlet weak var colourWell: NSColorWell!
+    @IBOutlet weak var colorPalette: NSColorWell!
     @IBOutlet weak var canvasColourWell: NSColorWell!
     @IBOutlet weak var brushSizeView: NSTextField!
     @IBOutlet weak var gridSizeView: NSTextField!
     @IBOutlet weak var undoRedoStepsView: NSTextField!
 
-    func applicationDidFinishLaunching(aNotification: NSNotification?) {
+    public func applicationDidFinishLaunching(aNotification: NSNotification?) {
+        customView.setAppDelegate(self)
     }
 
-    func applicationWillTerminate(aNotification: NSNotification?) {
+    public func applicationWillTerminate(aNotification: NSNotification?) {
         // Insert code here to tear down your application
     }
-
+    
     @IBAction func onDebug(sender: AnyObject) {
-        // Print the contents of the grid.
         customView.printGrid()
     }
-
+    
     //
-    // Setting attributes.
+    // MARK: Handling UI changes
+    //
+    
+    public func setPaletteColor(color: NSColor) {
+        colorPalette.color = color
+    }
+    
+    //
+    // MARK: Setting attributes
     //
     
     @IBAction func onColourPicked(sender: NSColorWell) {
-        customView.setColour(sender.color)
+        customView.setColor(sender.color)
     }
 
     @IBAction func onCanvasColourPicked(sender: AnyObject) {
@@ -53,7 +61,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     //
-    // Undo / redo / clear.
+    // MARK: Clear / undo / redo
     //
     
     @IBAction func onClearClicked(sender: AnyObject) {
@@ -69,7 +77,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     //
-    // Save screen.
+    // MARK: Save screen
     //
     
     @IBAction func onSave(sender: AnyObject) {
