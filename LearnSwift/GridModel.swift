@@ -27,8 +27,11 @@ public class GridModel {
         undoActions = []
     }
     
-    public func addSquare(x: Int, y: Int, color: NSColor?, size: Int) {
-        
+    public func getColor(x: Int, y: Int) -> NSColor? {
+        return grid[x][y]
+    }
+    
+    public func addSquare(x: Int, y: Int, color: NSColor?, size: Int) -> Bool {
         // Bool to help identify if all squares match current squares, in this
         // situation we don't record the action (since it doesn't change state).
         var allMatch = true
@@ -58,6 +61,8 @@ public class GridModel {
             let dr = DrawAction(origin: NSPoint(x: x, y: y), width: CGFloat(size), height: CGFloat(size), color: color, undo: undoGrid)
             drawActions.append(dr)
         }
+        
+        return !allMatch
     }
     
     public func clearGrid(withWidth: Int, withHeight: Int) {
@@ -77,14 +82,19 @@ public class GridModel {
         drawActions.append(da)
     }
     
-    public func applyUndo(da: DrawAction, size: Int) {
+    public func applyUndo() {
+        if (drawActions.isEmpty) {
+            return
+        }
+        
+        var da = drawActions.removeLast()
         var (point, undoGrid, undoWidth, undoHeight) = da.getUndoRect()
         let x = Int(point.x)
         let y = Int(point.y)
         
         // Set the color in necessary squares.
-        let numX = x + Int(undoWidth)
-        let numY = y + Int(undoHeight)
+        let numX = min(width, x + Int(undoWidth))
+        let numY = min(height, y + Int(undoHeight))
         for (var i = x; i < numX; i++) {
             for (var j = y; j < numY; j++) {
                 // Grid is reversed in getUndoRect() so removeLast is ok.
@@ -92,20 +102,27 @@ public class GridModel {
                 grid[Int(i)][Int(j)] = c
             }
         }
+        undoActions.append(da)
     }
     
-    public func applyRedo(da: DrawAction, size: Int) {
+    public func applyRedo() {
+        if (undoActions.isEmpty) {
+            return
+        }
+        
+        var da = undoActions.removeLast()
         var (point, color, redoWidth, redoHeight) = da.getRedoRect()
         let x = Int(point.x)
         let y = Int(point.y)
         
         // Set the color in necessary squares.
-        let numX = x + Int(redoWidth)
-        let numY = y + Int(redoHeight)
+        let numX = min(width, x + Int(redoWidth))
+        let numY = min(height, y + Int(redoHeight))
         for (var i = x; i < numX; i++) {
             for (var j = y; j < numY; j++) {
                 grid[Int(i)][Int(j)] = color
             }
         }
+        drawActions.append(da)
     }
 }
