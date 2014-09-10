@@ -48,7 +48,19 @@ public class GridModel {
                 if (grid[i][j] != color) {
                     allMatch = false
                 }
-                grid[i][j] = color
+                
+                // TODO - figure out how to combine if let statements for optionals. (Try tuples?)
+                if let prevColor = grid[i][j] {
+                    if let c = color {
+                        let newColor = c.blendedColorWithFraction(1-c.alphaComponent, ofColor: prevColor)
+                        grid[i][j] = newColor
+                    } else {
+                        grid[i][j] = color
+                    }
+                } else {
+                    grid[i][j] = color
+                }
+
             }
         }
         

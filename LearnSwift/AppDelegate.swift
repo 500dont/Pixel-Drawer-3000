@@ -25,8 +25,8 @@ public class AppDelegate: NSObject, NSApplicationDelegate {
     public func applicationDidFinishLaunching(aNotification: NSNotification?) {
         customView.setAppDelegate(self)
         // TODO - uncomment when alpha working.
-        // colorPanel = NSColorPanel.sharedColorPanel()
-        // colorPanel!.showsAlpha = true
+         colorPanel = NSColorPanel.sharedColorPanel()
+         colorPanel!.showsAlpha = true
     }
 
     public func applicationWillTerminate(aNotification: NSNotification?) {
@@ -43,7 +43,6 @@ public class AppDelegate: NSObject, NSApplicationDelegate {
     
     public func setPaletteColor(color: NSColor) {
         colorPalette.color = color
-        // customView.setColorAlpha(colorPanel!.alpha)
     }
     
     //
