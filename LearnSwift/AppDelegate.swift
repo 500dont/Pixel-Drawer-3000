@@ -7,7 +7,11 @@ import Cocoa
 
 public class AppDelegate: NSObject, NSApplicationDelegate {
     
+    let MAX_BRUSH_SIZE = 50
+    
     var DEBUG = false
+    
+    var colorPanel: NSColorPanel?
                             
     @IBOutlet weak var window: NSWindow!
     @IBOutlet weak var customView: CanvasView!
@@ -20,6 +24,9 @@ public class AppDelegate: NSObject, NSApplicationDelegate {
 
     public func applicationDidFinishLaunching(aNotification: NSNotification?) {
         customView.setAppDelegate(self)
+        // TODO - uncomment when alpha working.
+        // colorPanel = NSColorPanel.sharedColorPanel()
+        // colorPanel!.showsAlpha = true
     }
 
     public func applicationWillTerminate(aNotification: NSNotification?) {
@@ -36,6 +43,7 @@ public class AppDelegate: NSObject, NSApplicationDelegate {
     
     public func setPaletteColor(color: NSColor) {
         colorPalette.color = color
+        // customView.setColorAlpha(colorPanel!.alpha)
     }
     
     //
@@ -51,7 +59,7 @@ public class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @IBAction func onBrushSizedChanged(sender: AnyObject) {
-        let size = brushSizeView.integerValue
+        let size = min(brushSizeView.integerValue, MAX_BRUSH_SIZE)
         customView.setBrushSize(CGFloat(size))
     }
     
@@ -74,6 +82,22 @@ public class AppDelegate: NSObject, NSApplicationDelegate {
     
     @IBAction func onRedo(sender: AnyObject) {
         customView.redo(undoRedoStepsView.integerValue)
+    }
+    
+    //
+    // MARK: Hot keys
+    //
+    
+    @IBAction func onIncreaseBrushSize(sender: AnyObject) {
+        let size = min(brushSizeView.integerValue + 1, MAX_BRUSH_SIZE)
+        brushSizeView.integerValue = size
+        customView.setBrushSize(CGFloat(size))
+    }
+    
+    @IBAction func onDecreaseBrushSize(sender: AnyObject) {
+        let size = max(brushSizeView.integerValue - 1, 1)
+        brushSizeView.integerValue = size
+        customView.setBrushSize(CGFloat(size))
     }
     
     //

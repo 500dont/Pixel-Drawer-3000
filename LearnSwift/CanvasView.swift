@@ -13,6 +13,7 @@ public class CanvasView: NSView {
     var canvasColor: NSColor
     var selectedColor: NSColor
     var brushSize: CGFloat
+    var alpha: CGFloat
     
     var width: CGFloat
     var height: CGFloat
@@ -39,6 +40,7 @@ public class CanvasView: NSView {
         canvasColor = NSColor.whiteColor()
         selectedColor = NSColor.blueColor()
         brushSize = 1
+        alpha = 1
         
         width = frame.width
         height = frame.height
@@ -174,6 +176,10 @@ public class CanvasView: NSView {
     public func setGridSize(size: CGFloat) {
         squareSize = size
         needsDisplay = true
+    }
+    
+    public func setColorAlpha(alpha: CGFloat) {
+        self.alphaValue = alpha
     }
     
     //

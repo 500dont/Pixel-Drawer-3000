@@ -136,6 +136,16 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Edit" id="W48-6f-4Dl">
                         <items>
+                            <menuItem title="Increase brush size" keyEquivalent="" id="o6D-Mf-mVF">
+                                <connections>
+                                    <action selector="onIncreaseBrushSize:" target="Voe-Tx-rLC" id="1Dk-e1-hKp"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Decrease brush size" keyEquivalent="" id="NTl-p0-yCW">
+                                <connections>
+                                    <action selector="onDecreaseBrushSize:" target="Voe-Tx-rLC" id="iCX-WN-P1p"/>
+                                </connections>
+                            </menuItem>
                             <menuItem title="Undo" keyEquivalent="z" id="aOS-qU-Wi5">
                                 <connections>
                                     <action selector="onUndo:" target="Voe-Tx-rLC" id="Yoo-cp-Z9M"/>
