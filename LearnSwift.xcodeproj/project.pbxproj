@@ -20,6 +20,8 @@
 		CC5BA59E199893BC00049668 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5BA59D199893BC00049668 /* AppDelegate.swift */; };
 		CC5BA5A0199893BC00049668 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC5BA59F199893BC00049668 /* Images.xcassets */; };
 		CC5BA5AF199893BC00049668 /* LearnSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5BA5AE199893BC00049668 /* LearnSwiftTests.swift */; };
+		CCAB426319C140BF0009E45D /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAB426219C140BF0009E45D /* Utils.swift */; };
+		CCAB426419C140BF0009E45D /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAB426219C140BF0009E45D /* Utils.swift */; };
 		CCF601D519A9845800EF5D45 /* CanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF601D419A9845800EF5D45 /* CanvasView.swift */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +49,7 @@
 		CC5BA5A8199893BC00049668 /* LearnSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LearnSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC5BA5AD199893BC00049668 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CC5BA5AE199893BC00049668 /* LearnSwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnSwiftTests.swift; sourceTree = "<group>"; };
+		CCAB426219C140BF0009E45D /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		CCF601D419A9845800EF5D45 /* CanvasView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -98,6 +101,7 @@
 				CC5BA5A1199893BC00049668 /* MainMenu.xib */,
 				CC5BA599199893BC00049668 /* Supporting Files */,
 				CCF601D419A9845800EF5D45 /* CanvasView.swift */,
+				CCAB426219C140BF0009E45D /* Utils.swift */,
 			);
 			path = LearnSwift;
 			sourceTree = "<group>";
@@ -234,6 +238,7 @@
 				CC285EB519B5951300889803 /* Model.xcdatamodeld in Sources */,
 				CC5BA59C199893BC00049668 /* main.swift in Sources */,
 				CCF601D519A9845800EF5D45 /* CanvasView.swift in Sources */,
+				CCAB426319C140BF0009E45D /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -246,6 +251,7 @@
 				CC5BA5AF199893BC00049668 /* LearnSwiftTests.swift in Sources */,
 				CC285EB919B77BA400889803 /* CanvasView.swift in Sources */,
 				CC285EBA19B77BAA00889803 /* DrawAction.swift in Sources */,
+				CCAB426419C140BF0009E45D /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

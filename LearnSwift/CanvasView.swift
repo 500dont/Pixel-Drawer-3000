@@ -36,8 +36,8 @@ public class CanvasView: NSView {
     override init(frame: NSRect) {
         appDelegate = nil // Set later.
         
-        canvasColor = NSColor.whiteColor()
-        selectedColor = NSColor.blueColor()
+        canvasColor = NSColor(calibratedRed: 255.0, green: 255.0, blue: 255.0, alpha: 1)
+        selectedColor = NSColor(calibratedRed: 0, green: 0, blue: 255.0, alpha: 1)
         brushSize = 1
         
         width = frame.width
@@ -65,7 +65,8 @@ public class CanvasView: NSView {
                 if let color = grid.getColor(i, y: j) {
                     // color.setFill()
                     let blendedColor = color.blendedColorWithFraction(color.alphaComponent, ofColor: canvasColor)
-                    blendedColor.setFill()
+                    let newColor = Utils().blendColor(color, colorAbove: canvasColor)
+                    newColor.setFill()
                 } else {
                     canvasColor.setFill()
                 }
