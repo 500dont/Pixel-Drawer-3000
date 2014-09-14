@@ -64,7 +64,7 @@ public class CanvasView: NSView {
             for (var j = y; j < numY; j++) {
                 if let color = grid.getColor(i, y: j) {
                     // color.setFill()
-                    let blendedColor = color.blendedColorWithFraction(color.alphaComponent, ofColor: canvasColor)
+                    //let blendedColor = color.blendedColorWithFraction(color.alphaComponent, ofColor: canvasColor)
                     let newColor = Utils().blendColor(color, colorAbove: canvasColor)
                     newColor.setFill()
                 } else {

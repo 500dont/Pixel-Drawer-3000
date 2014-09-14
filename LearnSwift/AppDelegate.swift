@@ -12,6 +12,7 @@ public class AppDelegate: NSObject, NSApplicationDelegate {
     var DEBUG = false
     
     var colorPanel: NSColorPanel?
+    var ColorPanelColorContext = UnsafeMutablePointer<()>()
                             
     @IBOutlet weak var window: NSWindow!
     @IBOutlet weak var customView: CanvasView!
@@ -24,13 +25,17 @@ public class AppDelegate: NSObject, NSApplicationDelegate {
 
     public func applicationDidFinishLaunching(aNotification: NSNotification?) {
         customView.setAppDelegate(self)
-        // TODO - uncomment when alpha working.
-         colorPanel = NSColorPanel.sharedColorPanel()
-         colorPanel!.showsAlpha = true
+        colorPanel = NSColorPanel.sharedColorPanel()
+        colorPanel!.showsAlpha = true
+        //colorPanel!.supplementalTargetForAction("onColorPicked", sender: colorPanel!)
+        //colorPanel!.addObserver(self, forKeyPath:"color", options: nil, context: ColorPanelColorContext)
     }
+//    
+//    override func observeValueForKeyPath(path: String!, ofObject object: AnyObject!, change: NSDictionary!, context: UnsafeMutablePointer<()>) {
+//    }
 
     public func applicationWillTerminate(aNotification: NSNotification?) {
-        // Insert code here to tear down your application
+        // TODO - Possibly this is where I could save window locations?
     }
     
     @IBAction func onDebug(sender: AnyObject) {
@@ -49,7 +54,8 @@ public class AppDelegate: NSObject, NSApplicationDelegate {
     // MARK: Setting attributes
     //
     
-    @IBAction func onColourPicked(sender: NSColorWell) {
+    @IBAction func onColourPicked(sender: AnyObject) {
+        println("on color picked")
         customView.setColor(sender.color)
     }
 
