@@ -22,8 +22,6 @@
 		CC5BA5AF199893BC00049668 /* LearnSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5BA5AE199893BC00049668 /* LearnSwiftTests.swift */; };
 		CCAB426319C140BF0009E45D /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAB426219C140BF0009E45D /* Utils.swift */; };
 		CCAB426419C140BF0009E45D /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAB426219C140BF0009E45D /* Utils.swift */; };
-		CCAB426F19C648420009E45D /* JsonUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAB426E19C648420009E45D /* JsonUtils.swift */; };
-		CCAB427019C648420009E45D /* JsonUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAB426E19C648420009E45D /* JsonUtils.swift */; };
 		CCB62F8819DF07FE006C388E /* MColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB62F8719DF07FE006C388E /* MColor.swift */; };
 		CCB62F8919E0CE0A006C388E /* MColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB62F8719DF07FE006C388E /* MColor.swift */; };
 		CCF601D519A9845800EF5D45 /* CanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF601D419A9845800EF5D45 /* CanvasView.swift */; };
@@ -54,7 +52,6 @@
 		CC5BA5AD199893BC00049668 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CC5BA5AE199893BC00049668 /* LearnSwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnSwiftTests.swift; sourceTree = "<group>"; };
 		CCAB426219C140BF0009E45D /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
-		CCAB426E19C648420009E45D /* JsonUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonUtils.swift; sourceTree = "<group>"; };
 		CCB62F8719DF07FE006C388E /* MColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MColor.swift; sourceTree = "<group>"; };
 		CCF601D419A9845800EF5D45 /* CanvasView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -102,7 +99,6 @@
 			children = (
 				CCAB426A19C646220009E45D /* view */,
 				CCAB426919C646100009E45D /* model */,
-				CCAB426819C645D90009E45D /* json */,
 				CC5BA59F199893BC00049668 /* Images.xcassets */,
 				CC5BA599199893BC00049668 /* Supporting Files */,
 				CCAB426219C140BF0009E45D /* Utils.swift */,
@@ -134,14 +130,6 @@
 				CC5BA5AD199893BC00049668 /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		CCAB426819C645D90009E45D /* json */ = {
-			isa = PBXGroup;
-			children = (
-				CCAB426E19C648420009E45D /* JsonUtils.swift */,
-			);
-			name = json;
 			sourceTree = "<group>";
 		};
 		CCAB426919C646100009E45D /* model */ = {
@@ -263,7 +251,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CCAB426F19C648420009E45D /* JsonUtils.swift in Sources */,
 				CC5BA59E199893BC00049668 /* AppDelegate.swift in Sources */,
 				CC285EBC19B8C29C00889803 /* GridModel.swift in Sources */,
 				CC285EB219B46C2B00889803 /* DrawAction.swift in Sources */,
@@ -281,7 +268,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				CC285EBD19B8C29C00889803 /* GridModel.swift in Sources */,
-				CCAB427019C648420009E45D /* JsonUtils.swift in Sources */,
 				CC285EB819B77BA000889803 /* AppDelegate.swift in Sources */,
 				CCB62F8919E0CE0A006C388E /* MColor.swift in Sources */,
 				CC5BA5AF199893BC00049668 /* LearnSwiftTests.swift in Sources */,

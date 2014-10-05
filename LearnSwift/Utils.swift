@@ -2,9 +2,6 @@
 //  Utils.swift
 //  LearnSwift
 //
-//  Created by Mady Mellor on 9/10/14.
-//  Copyright (c) 2014 Mady Mellor. All rights reserved.
-//
 
 import Cocoa
 import Foundation

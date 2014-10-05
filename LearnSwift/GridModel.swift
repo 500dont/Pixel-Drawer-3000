@@ -14,6 +14,15 @@ public class GridModel {
     var grid: [[NSColor?]]
     var drawActions: [DrawAction]
     var undoActions: [DrawAction]
+
+    public init(width: Int, height: Int) {
+        self.width = width
+        self.height = height
+        
+        grid = Array(count: width, repeatedValue: Array(count: height, repeatedValue: nil))
+        drawActions = []
+        undoActions = []
+    }
     
     public init(mGrid: NSArray) {
         var mColorGrid:[[MColor]]
@@ -26,19 +35,14 @@ public class GridModel {
         for (var i = 0; i < width; i++) {
             for (var j = 0; j < height; j++) {
                 var color = mColorGrid[i][j]
-                var ncolor = NSColor(red: CGFloat(color.red), green: CGFloat(color.green), blue: CGFloat(color.blue), alpha: CGFloat(color.alpha))
-                grid[i][j] = ncolor
+                if color.isBackground {
+                    grid[i][j] = nil
+                } else {
+                    var ncolor = NSColor(red: CGFloat(color.red), green: CGFloat(color.green), blue: CGFloat(color.blue), alpha: CGFloat(color.alpha))
+                    grid[i][j] = ncolor
+                }
             }
         }
-        drawActions = []
-        undoActions = []
-    }
-
-    public init(width: Int, height: Int) {
-        self.width = width
-        self.height = height
-        
-        grid = Array(count: width, repeatedValue: Array(count: height, repeatedValue: nil))
         drawActions = []
         undoActions = []
     }
@@ -46,16 +50,7 @@ public class GridModel {
     public func getColor(x: Int, y: Int) -> NSColor? {
         return grid[x][y]
     }
-    
-    public func getRBGAColor(x: Int, y: Int) -> (NSString, NSString, NSString, NSString)? {
-        if let color = grid[x][y] {
-            return (color.redComponent.description, color.blueComponent.description,
-                color.greenComponent.description, color.alphaComponent.description)
-        } else {
-            return nil
-        }
-    }
-    
+
     public func getSize() -> (Int, Int) {
         return (width, height)
     }
@@ -170,5 +165,19 @@ public class GridModel {
             }
         }
         drawActions.append(da)
+    }
+    
+    public func archive(path: String!) {
+        var arcGrid = Array(count: width, repeatedValue: Array(count: height, repeatedValue: MColor(aColor: nil)))
+        
+        for (var i = 0; i < width; i++) {
+            for (var j = 0; j < height; j++) {
+                if let var color = grid[i][j] {
+                    arcGrid[i][j] = MColor(aColor: color)
+                }
+            }
+        }
+        
+        NSKeyedArchiver.archiveRootObject(arcGrid, toFile: path)
     }
 }

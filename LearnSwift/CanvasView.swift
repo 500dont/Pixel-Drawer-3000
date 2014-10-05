@@ -32,7 +32,7 @@ public class CanvasView: NSView {
     public func setAppDelegate(appDel: AppDelegate) {
         appDelegate = appDel
     }
-    
+
     override init(frame: NSRect) {
         appDelegate = nil // Set later.
         
@@ -63,8 +63,6 @@ public class CanvasView: NSView {
         for (var i = x; i < numX; i++) {
             for (var j = y; j < numY; j++) {
                 if let color = grid.getColor(i, y: j) {
-                    // color.setFill()
-                    //let blendedColor = color.blendedColorWithFraction(color.alphaComponent, ofColor: canvasColor)
                     let newColor = Utils().blendColor(color, colorAbove: canvasColor)
                     newColor.setFill()
                 } else {
@@ -190,14 +188,14 @@ public class CanvasView: NSView {
         var nsData = NSData.self.dataWithData(data)
         nsData.writeToFile(url.path, atomically: false)
         
-        let dataPath = url.path + "_data"
-        JsonUtils().doStuff(grid, squareSize: Int(squareSize), path: dataPath)
-        //jsonData.writeToFile(dataPath, atomically: false)
+        // Archive the file so that it can be opened.
+        let dataPath = url.path + ".pd3000"
+        grid.archive(dataPath)
     }
     
     public func openFile(url: NSURL!) {
-        let newGrid = JsonUtils().openStuff(url);
-        self.grid = newGrid
+        let gridA = NSKeyedUnarchiver.unarchiveObjectWithFile(url.path) as NSArray
+        grid = GridModel(mGrid: gridA)
         needsDisplay = true
     }
 

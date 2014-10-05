@@ -27,12 +27,7 @@ public class AppDelegate: NSObject, NSApplicationDelegate {
         customView.setAppDelegate(self)
         colorPanel = NSColorPanel.sharedColorPanel()
         colorPanel!.showsAlpha = true
-        //colorPanel!.supplementalTargetForAction("onColorPicked", sender: colorPanel!)
-        //colorPanel!.addObserver(self, forKeyPath:"color", options: nil, context: ColorPanelColorContext)
     }
-//    
-//    override func observeValueForKeyPath(path: String!, ofObject object: AnyObject!, change: NSDictionary!, context: UnsafeMutablePointer<()>) {
-//    }
 
     public func applicationWillTerminate(aNotification: NSNotification?) {
         // TODO - Possibly this is where I could save window locations?
@@ -55,7 +50,6 @@ public class AppDelegate: NSObject, NSApplicationDelegate {
     //
     
     @IBAction func onColourPicked(sender: AnyObject) {
-        println("on color picked")
         customView.setColor(sender.color)
     }
 
