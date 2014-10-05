@@ -2,9 +2,6 @@
 //  GridModel.swift
 //  LearnSwift
 //
-//  Created by Mady Mellor on 9/4/14.
-//  Copyright (c) 2014 Mady Mellor. All rights reserved.
-//
 
 import Cocoa
 import Foundation
@@ -17,6 +14,25 @@ public class GridModel {
     var grid: [[NSColor?]]
     var drawActions: [DrawAction]
     var undoActions: [DrawAction]
+    
+    public init(mGrid: NSArray) {
+        var mColorGrid:[[MColor]]
+        mColorGrid = mGrid as [[MColor]];
+        
+        self.width = mColorGrid.count
+        self.height = mColorGrid[0].count
+        
+        grid = Array(count: width, repeatedValue: Array(count: height, repeatedValue: nil))
+        for (var i = 0; i < width; i++) {
+            for (var j = 0; j < height; j++) {
+                var color = mColorGrid[i][j]
+                var ncolor = NSColor(red: CGFloat(color.red), green: CGFloat(color.green), blue: CGFloat(color.blue), alpha: CGFloat(color.alpha))
+                grid[i][j] = ncolor
+            }
+        }
+        drawActions = []
+        undoActions = []
+    }
 
     public init(width: Int, height: Int) {
         self.width = width
@@ -29,6 +45,23 @@ public class GridModel {
     
     public func getColor(x: Int, y: Int) -> NSColor? {
         return grid[x][y]
+    }
+    
+    public func getRBGAColor(x: Int, y: Int) -> (NSString, NSString, NSString, NSString)? {
+        if let color = grid[x][y] {
+            return (color.redComponent.description, color.blueComponent.description,
+                color.greenComponent.description, color.alphaComponent.description)
+        } else {
+            return nil
+        }
+    }
+    
+    public func getSize() -> (Int, Int) {
+        return (width, height)
+    }
+    
+    public func getGrid() -> [[NSColor?]] {
+        return grid
     }
     
     public func addSquare(x: Int, y: Int, color: NSColor?, size: Int) -> Bool {

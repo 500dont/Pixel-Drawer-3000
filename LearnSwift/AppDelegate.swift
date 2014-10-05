@@ -108,6 +108,15 @@ public class AppDelegate: NSObject, NSApplicationDelegate {
     //
     // MARK: Save screen
     //
+    @IBAction func onOpen(sender: AnyObject) {
+        var openPanel = NSOpenPanel()
+        openPanel.beginWithCompletionHandler { (result: Int) -> Void in
+            if result == NSFileHandlingPanelOKButton {
+            var exportedFileURL = openPanel.URL
+            self.customView.openFile(exportedFileURL)
+            }
+        }
+    }
     
     @IBAction func onSave(sender: AnyObject) {
         save()

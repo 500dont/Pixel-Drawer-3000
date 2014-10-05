@@ -180,7 +180,7 @@ public class CanvasView: NSView {
     }
     
     //
-    // MARK: Save screen
+    // MARK: Save / Open screen
     //
     
     public func saveScreen(url: NSURL!) {
@@ -189,6 +189,16 @@ public class CanvasView: NSView {
         var data = beautifulArtwork!.TIFFRepresentation
         var nsData = NSData.self.dataWithData(data)
         nsData.writeToFile(url.path, atomically: false)
+        
+        let dataPath = url.path + "_data"
+        JsonUtils().doStuff(grid, squareSize: Int(squareSize), path: dataPath)
+        //jsonData.writeToFile(dataPath, atomically: false)
+    }
+    
+    public func openFile(url: NSURL!) {
+        let newGrid = JsonUtils().openStuff(url);
+        self.grid = newGrid
+        needsDisplay = true
     }
 
     //
