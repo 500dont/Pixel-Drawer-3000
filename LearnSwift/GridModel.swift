@@ -48,7 +48,14 @@ public class GridModel {
     }
     
     public func getColor(x: Int, y: Int) -> NSColor? {
-        return grid[x][y]
+        // This check is included as during re-size the dirtyRect will be larger than the
+        // current grid size. Ideally the grid will be updated in size to reflect this before
+        // getting to this point, however, that is not the case currently.
+        if (x < width && y < height) {
+            return grid[x][y]
+        } else {
+            return nil
+        }
     }
 
     public func getSize() -> (Int, Int) {
@@ -81,7 +88,6 @@ public class GridModel {
                 if let prevColor = grid[i][j] {
                     if let c = color {
                         let newColor = Utils().blendColor(c, colorAbove: prevColor)
-                        //let newColor = c.blendedColorWithFraction(1-c.alphaComponent, ofColor: prevColor)
                         grid[i][j] = newColor
                     } else {
                         grid[i][j] = color
@@ -121,6 +127,27 @@ public class GridModel {
         }
         let da = DrawAction(origin: NSPoint(x: 0,y: 0), width: CGFloat(numX), height: CGFloat(numY), color: nil, undo: undoGrid)
         drawActions.append(da)
+    }
+    
+    public func resize(newWidth: Int, newHeight: Int) {
+        // Lets do this the most straight forward / bad way for now too.
+        var newGrid: [[NSColor?]] = Array(count: newWidth, repeatedValue: Array(count: newHeight, repeatedValue: nil))
+        
+        let numX = min(width, newWidth)
+        let numY = min(height, newHeight)
+        // Copy the values.
+        for (var i = 0; i < numX; i++) {
+            for (var j = 0; j < numY; j++) {
+                newGrid[i][j] = grid[i][j]
+            }
+        }
+        
+        // Set the new grid.
+        grid = newGrid
+        
+        // Update the size.
+        width = newWidth
+        height = newHeight
     }
     
     public func applyUndo() {

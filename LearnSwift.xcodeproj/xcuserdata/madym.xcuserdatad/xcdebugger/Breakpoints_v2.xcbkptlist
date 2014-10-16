@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LearnSwift/CanvasView.swift"
-            timestampString = "434244401.888632"
+            timestampString = "435171494.956003"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "82"
-            endingLineNumber = "82"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
             landmarkName = "addSquare(_:withColor:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -106,57 +106,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LearnSwift/CanvasView.swift"
-            timestampString = "434244401.888632"
+            timestampString = "435171494.956003"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
-            landmarkName = "drawRect(_:)"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "LearnSwift.Grid.drawRect (LearnSwift.Grid)(C.CGRect) -&gt; ()"
-                  moduleName = "LearnSwift"
-                  urlString = "file:///Users/madym/Documents/Workspace/Projects/LearnSwift/LearnSwift/Grid.swift"
-                  timestampString = "431311475.524155"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "59"
-                  endingLineNumber = "59"
-                  offsetFromSymbolStart = "1816">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "LearnSwift.Grid.drawRect (LearnSwift.Grid)(C.CGRect) -&gt; ()"
-                  moduleName = "LearnSwift"
-                  urlString = "file:///Users/madym/Documents/Workspace/Projects/LearnSwift/LearnSwift/Grid.swift"
-                  timestampString = "431311475.524421"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "59"
-                  endingLineNumber = "59"
-                  offsetFromSymbolStart = "2979">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "LearnSwift/CanvasView.swift"
-            timestampString = "434244401.888632"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "97"
-            endingLineNumber = "97"
+            startingLineNumber = "115"
+            endingLineNumber = "115"
             landmarkName = "convertToGridPoint(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -168,11 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LearnSwift/CanvasView.swift"
-            timestampString = "434244401.888632"
+            timestampString = "435171494.956003"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
             landmarkName = "init(frame:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -248,11 +202,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LearnSwift/GridModel.swift"
-            timestampString = "434243476.761592"
+            timestampString = "435171515.337783"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "175"
-            endingLineNumber = "175"
+            startingLineNumber = "202"
+            endingLineNumber = "202"
             landmarkName = "archive(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -270,6 +224,42 @@
             startingLineNumber = "27"
             endingLineNumber = "27"
             landmarkName = "init(mGrid:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.SymbolicBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            symbolName = ""
+            moduleName = "">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.SymbolicBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            symbolName = "malloc_error_break"
+            moduleName = "">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LearnSwift/GridModel.swift"
+            timestampString = "435171515.337783"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "133"
+            endingLineNumber = "133"
+            landmarkName = "resize(_:newHeight:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

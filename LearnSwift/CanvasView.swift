@@ -32,7 +32,23 @@ public class CanvasView: NSView {
     public func setAppDelegate(appDel: AppDelegate) {
         appDelegate = appDel
     }
+    
+    override public var preservesContentDuringLiveResize: Bool {
+        return true
+    }
 
+    override public func viewDidEndLiveResize() {
+        // Update the grid size.
+        var newWidth = frame.width / squareSize
+        var newHeight = frame.height / squareSize
+        grid.resize(Int(newWidth), newHeight: Int(newHeight))
+        
+        // Update canvas size.
+        // TODO consider always using frame width / height rather than having my own?
+        width = frame.width
+        height = frame.height
+    }
+    
     override init(frame: NSRect) {
         appDelegate = nil // Set later.
         

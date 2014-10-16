@@ -1,0 +1,14 @@
+Resizing Options:
+
+1) As resize happens, canvas size increases and current content is preserved
+	Implementation:
+	- preserve content during resize
+	- at end of resize update grid model by adding to the array of values
+
+2) As resize happens, the drawing becomes larger
+	Implementation:
+	- preserve aspect ratio
+	- increase square size?	
+
+UI supporting both:
+- Toggle on / off (probably a lock similar to PS) in the bottom right corner

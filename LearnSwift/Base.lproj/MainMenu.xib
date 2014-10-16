@@ -348,12 +348,20 @@
                 <rect key="frame" x="0.0" y="0.0" width="520" height="421"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
-                    <customView ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="F4Q-jm-tfc" customClass="CanvasView" customModule="LearnSwift" customModuleProvider="target">
-                        <rect key="frame" x="8" y="12" width="500" height="400"/>
+                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="F4Q-jm-tfc" customClass="CanvasView" customModule="LearnSwift" customModuleProvider="target">
+                        <rect key="frame" x="12" y="12" width="496" height="397"/>
                     </customView>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="centerX" secondItem="F4Q-jm-tfc" secondAttribute="centerX" id="6Gr-aY-LJI"/>
+                    <constraint firstAttribute="trailing" secondItem="F4Q-jm-tfc" secondAttribute="trailing" constant="12" id="BPp-gZ-dxt"/>
+                    <constraint firstAttribute="centerY" secondItem="F4Q-jm-tfc" secondAttribute="centerY" id="RGq-ta-df5"/>
+                    <constraint firstAttribute="bottom" secondItem="F4Q-jm-tfc" secondAttribute="bottom" constant="12" id="cC0-0a-DB0"/>
+                    <constraint firstItem="F4Q-jm-tfc" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="12" id="e0v-X7-IsG"/>
+                    <constraint firstItem="F4Q-jm-tfc" firstAttribute="leading" relation="lessThanOrEqual" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="12" id="ehX-Ck-i51"/>
+                    <constraint firstItem="F4Q-jm-tfc" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="12" id="g3A-wP-hdG"/>
                     <constraint firstItem="F4Q-jm-tfc" firstAttribute="leading" secondItem="EiT-Mj-1SZ" secondAttribute="leading" constant="12" id="ldX-7K-nWx"/>
+                    <constraint firstItem="F4Q-jm-tfc" firstAttribute="top" relation="greaterThanOrEqual" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="12" id="xvd-vy-fL7"/>
                 </constraints>
             </view>
             <point key="canvasLocation" x="-2422" y="-688.5"/>
