@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "LearnSwift/AppDelegate.swift"
-            timestampString = "435726622.294306"
+            timestampString = "438627754.800641"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
             landmarkName = "setPaletteColor(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -261,6 +261,20 @@
             endingLineNumber = "133"
             landmarkName = "resize(_:newHeight:)"
             landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "LearnSwift/AppDelegate.swift"
+            timestampString = "438627754.800641"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "6"
+            endingLineNumber = "6">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

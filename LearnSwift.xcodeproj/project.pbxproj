@@ -20,6 +20,7 @@
 		CC5BA59E199893BC00049668 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5BA59D199893BC00049668 /* AppDelegate.swift */; };
 		CC5BA5A0199893BC00049668 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CC5BA59F199893BC00049668 /* Images.xcassets */; };
 		CC5BA5AF199893BC00049668 /* LearnSwiftTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5BA5AE199893BC00049668 /* LearnSwiftTests.swift */; };
+		CC93C6021A151EF20006D292 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC93C6011A151EF20006D292 /* Carbon.framework */; };
 		CCAB426319C140BF0009E45D /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAB426219C140BF0009E45D /* Utils.swift */; };
 		CCAB426419C140BF0009E45D /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAB426219C140BF0009E45D /* Utils.swift */; };
 		CCB62F8819DF07FE006C388E /* MColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCB62F8719DF07FE006C388E /* MColor.swift */; };
@@ -51,6 +52,7 @@
 		CC5BA5A8199893BC00049668 /* LearnSwiftTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LearnSwiftTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC5BA5AD199893BC00049668 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CC5BA5AE199893BC00049668 /* LearnSwiftTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnSwiftTests.swift; sourceTree = "<group>"; };
+		CC93C6011A151EF20006D292 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = ../../../../../../System/Library/Frameworks/Carbon.framework; sourceTree = "<group>"; };
 		CCAB426219C140BF0009E45D /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		CCB62F8719DF07FE006C388E /* MColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MColor.swift; sourceTree = "<group>"; };
 		CCF601D419A9845800EF5D45 /* CanvasView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CanvasView.swift; sourceTree = "<group>"; };
@@ -61,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC93C6021A151EF20006D292 /* Carbon.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,6 +80,7 @@
 		CC5BA58D199893BC00049668 = {
 			isa = PBXGroup;
 			children = (
+				CC93C6011A151EF20006D292 /* Carbon.framework */,
 				CC285EB319B5951300889803 /* Model.xcdatamodeld */,
 				CC285EB619B5970500889803 /* Entity.swift */,
 				CC5BA598199893BC00049668 /* LearnSwift */,

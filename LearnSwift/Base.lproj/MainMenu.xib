@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6205" systemVersion="13E28" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6205" systemVersion="13F34" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6205"/>
     </dependencies>
@@ -136,9 +136,21 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Edit" id="W48-6f-4Dl">
                         <items>
-                            <menuItem title="Increase brush size" keyEquivalent="" id="o6D-Mf-mVF">
+                            <menuItem title="Increase undo steps" keyEquivalent="" id="jHO-aI-uqq">
+                                <modifierMask key="keyEquivalentModifierMask" shift="YES"/>
                                 <connections>
-                                    <action selector="onIncreaseBrushSize:" target="Voe-Tx-rLC" id="1Dk-e1-hKp"/>
+                                    <action selector="onIncreaseUndoSteps:" target="Voe-Tx-rLC" id="Ad3-NL-Zpl"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Decrease undo steps" keyEquivalent="" id="dgy-wb-tIA">
+                                <modifierMask key="keyEquivalentModifierMask" shift="YES"/>
+                                <connections>
+                                    <action selector="onDecreaseUndoSteps:" target="Voe-Tx-rLC" id="jXG-wy-kkB"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Increase brush size" keyEquivalent="" id="lyv-hu-yHZ">
+                                <connections>
+                                    <action selector="onIncreaseBrushSize:" target="Voe-Tx-rLC" id="LhJ-vq-KDm"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Decrease brush size" keyEquivalent="" id="NTl-p0-yCW">

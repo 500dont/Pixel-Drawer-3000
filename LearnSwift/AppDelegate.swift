@@ -5,7 +5,7 @@
 
 import Cocoa
 
-public class AppDelegate: NSObject, NSApplicationDelegate {
+public class AppDelegate: NSResponder, NSApplicationDelegate {
     
     let MAX_BRUSH_SIZE = 50
     
@@ -27,6 +27,10 @@ public class AppDelegate: NSObject, NSApplicationDelegate {
         customView.setAppDelegate(self)
         colorPanel = NSColorPanel.sharedColorPanel()
         colorPanel!.showsAlpha = true
+        window.makeFirstResponder(self)
+//        undoRedoStepsView.addTarget(self, action: Selector("onIncreaseUndoSteps:"), forControlEvents: UIControlEvents.ValueChanged)
+//        undoRedoStepsView.addTarget(self, action: Selector("onDecreaseUndoSteps:"), forControlEvents: UIControlEvents.ValueChanged)
+
     }
 
     public func applicationWillTerminate(aNotification: NSNotification?) {
@@ -37,6 +41,11 @@ public class AppDelegate: NSObject, NSApplicationDelegate {
         customView.printGrid()
     }
     
+    override public func keyDown(theEvent: NSEvent!) {
+        let chars = theEvent.characters
+        println("keydown: " + chars);
+    }
+
     //
     // MARK: Handling UI changes
     //
@@ -97,6 +106,17 @@ public class AppDelegate: NSObject, NSApplicationDelegate {
         let size = max(brushSizeView.integerValue - 1, 1)
         brushSizeView.integerValue = size
         customView.setBrushSize(CGFloat(size))
+    }
+
+    @IBAction func onIncreaseUndoSteps(sender: AnyObject) {
+        let steps = undoRedoStepsView.integerValue + 1
+        undoRedoStepsView.stringValue = String(format: steps.description)
+    }
+
+    @IBAction func onDecreaseUndoSteps(sender: AnyObject) {
+        let steps = undoRedoStepsView.integerValue
+        let newValue = max(1, steps-1)
+        undoRedoStepsView.stringValue = String(format: newValue.description)
     }
     
     //
