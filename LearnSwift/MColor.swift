@@ -26,10 +26,10 @@ public class MColor: NSObject {
         
         if let color = aColor {
             let color = color.colorUsingColorSpace(NSColorSpace.genericRGBColorSpace())
-            red = Float(color.redComponent)
-            blue = Float(color.blueComponent)
-            green = Float(color.greenComponent)
-            alpha = Float(color.alphaComponent)
+            red = Float(color!.redComponent)
+            blue = Float(color!.blueComponent)
+            green = Float(color!.greenComponent)
+            alpha = Float(color!.alphaComponent)
         } else {
             isBackground = true
         }

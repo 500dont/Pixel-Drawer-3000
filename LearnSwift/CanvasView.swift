@@ -18,6 +18,8 @@ public class CanvasView: NSView {
     var height: CGFloat
     var squareSize: CGFloat
     
+    var replaceColorModeState: Bool
+    
     var grid: GridModel
     
     //
@@ -61,7 +63,7 @@ public class CanvasView: NSView {
         squareSize = 10
         
         grid = GridModel(width: Int(width/squareSize), height: Int(height/squareSize))
-        
+        replaceColorModeState = false
         super.init(frame: frame)
     }
     
@@ -123,19 +125,19 @@ public class CanvasView: NSView {
     // MARK: Handling drawing input
     //
     
-    override public func mouseDown(theEvent: NSEvent!) {
+    override public func mouseDown(theEvent: NSEvent) {
         super.mouseDown(theEvent)
         let point = convertPoint(theEvent.locationInWindow, fromView:nil)
         addSquare(theEvent, withColor: selectedColor)
     }
     
-    override public func mouseDragged(theEvent: NSEvent!) {
+    override public func mouseDragged(theEvent: NSEvent) {
         super.mouseDragged(theEvent)
         let point = convertPoint(theEvent.locationInWindow, fromView:nil)
         addSquare(theEvent, withColor: selectedColor)
     }
     
-    override public func rightMouseDown(theEvent: NSEvent!) {
+    override public func rightMouseDown(theEvent: NSEvent) {
         super.rightMouseDown(theEvent)
         let point = convertToGridPoint(theEvent)
         let x = Int(point.x)
@@ -172,11 +174,32 @@ public class CanvasView: NSView {
     }
     
     //
+    // MARK: Misc buttons
+    //
+    
+    public func getReplaceColorModeState() -> Bool {
+        return replaceColorModeState;
+    }
+    
+    public func setReplaceColorMode(newState: Bool) {
+        replaceColorModeState = newState;
+    }
+    
+    public func replaceColor(selectedColor: NSColor, color: NSColor) {
+        
+    }
+    
+    //
     // MARK: Set user specified options
     //
     
     public func setColor(color: NSColor) {
-        selectedColor = color
+        if (!replaceColorModeState) {
+            selectedColor = color
+        } else {
+            replaceColor(selectedColor, color: color)
+
+        }
     }
     
     public func setCanvasColour(color: NSColor) {
@@ -201,16 +224,16 @@ public class CanvasView: NSView {
         var beautifulArtwork = self.bitmapImageRepForCachingDisplayInRect(self.bounds)
         self.cacheDisplayInRect(self.bounds, toBitmapImageRep: beautifulArtwork!)
         var data = beautifulArtwork!.TIFFRepresentation
-        var nsData = NSData.self.dataWithData(data)
-        nsData.writeToFile(url.path, atomically: false)
+        var nsData = NSData(data: data!)
+        nsData.writeToFile(url.path!, atomically: false)
         
         // Archive the file so that it can be opened.
-        let dataPath = url.path + ".pd3000"
+        let dataPath = url.path! + ".pd3000"
         grid.archive(dataPath)
     }
     
     public func openFile(url: NSURL!) {
-        let gridA = NSKeyedUnarchiver.unarchiveObjectWithFile(url.path) as NSArray
+        let gridA = NSKeyedUnarchiver.unarchiveObjectWithFile(url.path!) as NSArray
         grid = GridModel(mGrid: gridA)
         needsDisplay = true
     }

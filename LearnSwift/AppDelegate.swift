@@ -22,6 +22,7 @@ public class AppDelegate: NSResponder, NSApplicationDelegate {
     @IBOutlet weak var brushSizeView: NSTextField!
     @IBOutlet weak var gridSizeView: NSTextField!
     @IBOutlet weak var undoRedoStepsView: NSTextField!
+    @IBOutlet weak var replaceColorButton: NSButton!
 
     public func applicationDidFinishLaunching(aNotification: NSNotification?) {
         customView.setAppDelegate(self)
@@ -41,9 +42,9 @@ public class AppDelegate: NSResponder, NSApplicationDelegate {
         customView.printGrid()
     }
     
-    override public func keyDown(theEvent: NSEvent!) {
+    override public func keyDown(theEvent: NSEvent) {
         let chars = theEvent.characters
-        println("keydown: " + chars);
+        //println("keydown: " + !chars);
     }
 
     //
@@ -93,6 +94,18 @@ public class AppDelegate: NSResponder, NSApplicationDelegate {
     }
     
     //
+    // MARK: Misc buttons
+    //
+    
+    @IBAction func onReplaceColorButtonClicked(sender: NSButton) {
+        var state = !customView.getReplaceColorModeState()
+        customView.setReplaceColorMode(state)
+        // true = "replace" false = "save"
+        sender.title = state ? "Replace color" : "Save selected"
+
+    }
+    
+    //
     // MARK: Hot keys
     //
     
@@ -117,6 +130,23 @@ public class AppDelegate: NSResponder, NSApplicationDelegate {
         let steps = undoRedoStepsView.integerValue
         let newValue = max(1, steps-1)
         undoRedoStepsView.stringValue = String(format: newValue.description)
+    }
+    
+    //
+    // MARK: Frame tool window
+    //
+    
+    @IBAction func onNewFrame(sender: AnyObject) {
+        print("on new frame")
+    }
+    
+    @IBAction func onGhostPrev(sender: AnyObject) {
+        print("on ghost prev")
+    
+    }
+    
+    @IBAction func onGhostNext(sender: AnyObject) {
+        print("on ghost next")
     }
     
     //

@@ -14,6 +14,7 @@ public class GridModel {
     var grid: [[NSColor?]]
     var drawActions: [DrawAction]
     var undoActions: [DrawAction]
+    var colorDict: ColorDictionary
 
     public init(width: Int, height: Int) {
         self.width = width
@@ -22,6 +23,7 @@ public class GridModel {
         grid = Array(count: width, repeatedValue: Array(count: height, repeatedValue: nil))
         drawActions = []
         undoActions = []
+        colorDict = ColorDictionary()
     }
     
     public init(mGrid: NSArray) {
@@ -45,6 +47,7 @@ public class GridModel {
         }
         drawActions = []
         undoActions = []
+        colorDict = ColorDictionary()
     }
     
     public func getColor(x: Int, y: Int) -> NSColor? {
@@ -107,9 +110,56 @@ public class GridModel {
             
             let dr = DrawAction(origin: NSPoint(x: x, y: y), width: CGFloat(size), height: CGFloat(size), color: color, undo: undoGrid)
             drawActions.append(dr)
+            
+            // Record this color & location in hashmap.
+            if (color != nil) {
+                colorDict.store(key: color!, action: dr)
+            }
         }
         
         return !allMatch
+    }
+    
+    class ColorDictionary {
+        var dictionary = Dictionary<NSColor, Array<DrawAction>>()
+        
+        func store(#key: NSColor, action: DrawAction) {
+            if (dictionary[key] != nil) {
+                var tlist = dictionary[key]!
+                tlist.append(action)
+                set(key: key, list: tlist)
+            } else {
+                var list = Array<DrawAction>()
+                list.append(action)
+                dictionary[key] = list
+            }
+        }
+        
+        func set(#key: NSColor, list: Array<DrawAction>) {
+            dictionary[key] = list
+        }
+        
+        func get(#key: NSColor) -> Array<DrawAction>? {
+            return dictionary[key]
+        }
+        
+        func has(#key: NSColor) -> Bool {
+            if (dictionary[key] != nil) {
+                return true
+            } else {
+                return false
+            }
+        }
+    }
+    
+    public func replaceColor(replace: NSColor, withColor: NSColor) {
+        
+        // 1. See if color to replace is used
+        
+        
+        // 2. If it is, replace all locations
+        
+        // 3. If it isn't, do nothing.
     }
     
     public func clearGrid(withWidth: Int, withHeight: Int) {

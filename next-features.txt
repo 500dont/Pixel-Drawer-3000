@@ -1,0 +1,31 @@
+PIXEL DRAWER NEXT FEATURES
+
+Minor features:
+- Outline on brush
+- Hot keys for altering undo / redo count
+
+Major features:
+- Frame support
+
+
+Frames:
+Need tool window that: 1) shows list of frames
+		       2) allows creation of new frame
+		       3) toggle ghost image of previous / next frame
+Example:
+
+###########
+# Toolbar #
+###########
+frame 1      <— list of frames
+frame 2
+frame 3
+frame 4
+[+ frame]    <— creates a new frame with previous image on it
+[ghost prev]
+[ghost next] <— display ghost image on top of current frame 
+
+Where to start:
+1. Create tool bar with “create new frame” button
+2. Hook up button - Save current window, make new copy of it (should include undo / redo stack), add frame to list, if other frame is selected in frame tool bar save current one and go to selected one
+3. Then figure out how to ghost prev / next
