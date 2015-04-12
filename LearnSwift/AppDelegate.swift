@@ -54,6 +54,9 @@ public class AppDelegate: NSResponder, NSApplicationDelegate {
     
     public func setPaletteColor(color: NSColor) {
         colorPalette.color = color
+        if (customView.getEraseState()) {
+            onEraseButtonClicked(self)
+        }
     }
     
     //
@@ -61,6 +64,9 @@ public class AppDelegate: NSResponder, NSApplicationDelegate {
     //
     
     @IBAction func onColourPicked(sender: AnyObject) {
+        if (customView.getEraseState()) {
+            onEraseButtonClicked(sender)
+        }
         customView.setColor(sender.color)
     }
 
@@ -99,15 +105,14 @@ public class AppDelegate: NSResponder, NSApplicationDelegate {
     //
     
     
-    @IBAction func onEraseButtonClicked(sender: NSButton) {
+    @IBAction func onEraseButtonClicked(sender: AnyObject) {
         let state = customView.toggleEraseState()
-        sender.title = state ? "Erase" : "Stop erasing"
+        eraseColorButton.title = !state ? "Erase" : "Stop erasing"
     }
     
-    @IBAction func onReplaceColorButtonClicked(sender: NSButton) {
+    @IBAction func onReplaceColorButtonClicked(sender: AnyObject) {
         let state = customView.toggleReplaceColorState();
-        // true = "replace" false = "save"
-        sender.title = state ? "Replace color" : "Save selected"
+        replaceColorButton.title = !state ? "Replace color" : "Save selected"
     }
     
     //

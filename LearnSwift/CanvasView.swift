@@ -64,8 +64,8 @@ public class CanvasView: NSView {
         squareSize = 10
         
         grid = GridModel(width: Int(width/squareSize), height: Int(height/squareSize))
-        replaceColorModeState = true;
-        eraseState = true;
+        replaceColorModeState = false;
+        eraseState = false;
         super.init(frame: frame)
     }
     
@@ -102,8 +102,14 @@ public class CanvasView: NSView {
         let point = convertToGridPoint(theEvent)
         let x = Int(point.x)
         let y = Int(point.y)
+        var newColor: NSColor?
+        newColor = withColor
+        
+        if (eraseState) {
+            newColor = nil
+        }
 
-        let draw = grid.addSquare(x, y: y, color: withColor, size: Int(brushSize))
+        let draw = grid.addSquare(x, y: y, color: newColor, size: Int(brushSize))
         
         if (draw) {
             // Indicate to draw if necessary.
@@ -181,6 +187,10 @@ public class CanvasView: NSView {
     
     public func toggleEraseState() -> Bool {
         eraseState = !eraseState;
+        return eraseState;
+    }
+    
+    public func getEraseState() -> Bool {
         return eraseState;
     }
     
