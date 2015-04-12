@@ -19,6 +19,7 @@ public class CanvasView: NSView {
     var squareSize: CGFloat
     
     var replaceColorModeState: Bool
+    var eraseState: Bool
     
     var grid: GridModel
     
@@ -63,7 +64,8 @@ public class CanvasView: NSView {
         squareSize = 10
         
         grid = GridModel(width: Int(width/squareSize), height: Int(height/squareSize))
-        replaceColorModeState = false
+        replaceColorModeState = true;
+        eraseState = true;
         super.init(frame: frame)
     }
     
@@ -177,12 +179,15 @@ public class CanvasView: NSView {
     // MARK: Misc buttons
     //
     
-    public func getReplaceColorModeState() -> Bool {
-        return replaceColorModeState;
+    public func toggleEraseState() -> Bool {
+        eraseState = !eraseState;
+        return eraseState;
     }
     
-    public func setReplaceColorMode(newState: Bool) {
-        replaceColorModeState = newState;
+    // Returns the new replace color state after the toggle.
+    public func toggleReplaceColorState() -> Bool {
+        replaceColorModeState = !replaceColorModeState;
+        return replaceColorModeState;
     }
     
     public func replaceColor(selectedColor: NSColor, color: NSColor) {

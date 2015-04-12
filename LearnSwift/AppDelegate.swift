@@ -22,6 +22,7 @@ public class AppDelegate: NSResponder, NSApplicationDelegate {
     @IBOutlet weak var brushSizeView: NSTextField!
     @IBOutlet weak var gridSizeView: NSTextField!
     @IBOutlet weak var undoRedoStepsView: NSTextField!
+    @IBOutlet weak var eraseColorButton: NSButton!
     @IBOutlet weak var replaceColorButton: NSButton!
 
     public func applicationDidFinishLaunching(aNotification: NSNotification?) {
@@ -97,12 +98,16 @@ public class AppDelegate: NSResponder, NSApplicationDelegate {
     // MARK: Misc buttons
     //
     
+    
+    @IBAction func onEraseButtonClicked(sender: NSButton) {
+        let state = customView.toggleEraseState()
+        sender.title = state ? "Erase" : "Stop erasing"
+    }
+    
     @IBAction func onReplaceColorButtonClicked(sender: NSButton) {
-        var state = !customView.getReplaceColorModeState()
-        customView.setReplaceColorMode(state)
+        let state = customView.toggleReplaceColorState();
         // true = "replace" false = "save"
         sender.title = state ? "Replace color" : "Save selected"
-
     }
     
     //
