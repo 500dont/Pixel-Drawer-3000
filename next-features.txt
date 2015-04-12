@@ -3,6 +3,8 @@ PIXEL DRAWER NEXT FEATURES
 Minor features:
 - Outline on brush
 - Hot keys for altering undo / redo count
+- Eraser
+- Color replacement
 
 Major features:
 - Frame support

@@ -14,7 +14,6 @@ public class GridModel {
     var grid: [[NSColor?]]
     var drawActions: [DrawAction]
     var undoActions: [DrawAction]
-    var colorDict: ColorDictionary
 
     public init(width: Int, height: Int) {
         self.width = width
@@ -23,7 +22,6 @@ public class GridModel {
         grid = Array(count: width, repeatedValue: Array(count: height, repeatedValue: nil))
         drawActions = []
         undoActions = []
-        colorDict = ColorDictionary()
     }
     
     public init(mGrid: NSArray) {
@@ -47,7 +45,14 @@ public class GridModel {
         }
         drawActions = []
         undoActions = []
-        colorDict = ColorDictionary()
+    }
+    
+    public func getSize() -> (Int, Int) {
+        return (width, height)
+    }
+    
+    public func getGrid() -> [[NSColor?]] {
+        return grid
     }
     
     public func getColor(x: Int, y: Int) -> NSColor? {
@@ -60,13 +65,23 @@ public class GridModel {
             return nil
         }
     }
-
-    public func getSize() -> (Int, Int) {
-        return (width, height)
+    
+    public func getColorLocations(color: NSColor) -> [NSPoint] {
+        var colorLoc = [NSPoint]()
+        for (var i = 0; i < width; i++) {
+            for (var j = 0; j < height; j++) {
+                if (getColor(i, y: j) == color) {
+                    colorLoc.append(NSPoint(x: i, y: j))
+                }
+            }
+        }
+        return colorLoc;
     }
     
-    public func getGrid() -> [[NSColor?]] {
-        return grid
+    public func setColor(x: Int, y: Int, color: NSColor?) {
+        if let newColor = color {
+            grid[x][y] = newColor
+        }
     }
     
     public func addSquare(x: Int, y: Int, color: NSColor?, size: Int) -> Bool {
@@ -110,46 +125,8 @@ public class GridModel {
             
             let dr = DrawAction(origin: NSPoint(x: x, y: y), width: CGFloat(size), height: CGFloat(size), color: color, undo: undoGrid)
             drawActions.append(dr)
-            
-            // Record this color & location in hashmap.
-            if (color != nil) {
-                colorDict.store(key: color!, action: dr)
-            }
         }
-        
         return !allMatch
-    }
-    
-    class ColorDictionary {
-        var dictionary = Dictionary<NSColor, Array<DrawAction>>()
-        
-        func store(#key: NSColor, action: DrawAction) {
-            if (dictionary[key] != nil) {
-                var tlist = dictionary[key]!
-                tlist.append(action)
-                set(key: key, list: tlist)
-            } else {
-                var list = Array<DrawAction>()
-                list.append(action)
-                dictionary[key] = list
-            }
-        }
-        
-        func set(#key: NSColor, list: Array<DrawAction>) {
-            dictionary[key] = list
-        }
-        
-        func get(#key: NSColor) -> Array<DrawAction>? {
-            return dictionary[key]
-        }
-        
-        func has(#key: NSColor) -> Bool {
-            if (dictionary[key] != nil) {
-                return true
-            } else {
-                return false
-            }
-        }
     }
     
     public func replaceColor(replace: NSColor, withColor: NSColor) {
@@ -158,8 +135,6 @@ public class GridModel {
         
         
         // 2. If it is, replace all locations
-        
-        // 3. If it isn't, do nothing.
     }
     
     public func clearGrid(withWidth: Int, withHeight: Int) {
@@ -216,8 +191,10 @@ public class GridModel {
         for (var i = x; i < numX; i++) {
             for (var j = y; j < numY; j++) {
                 // Grid is reversed in getUndoRect() so removeLast is ok.
-                let c = undoGrid.removeLast()
-                grid[Int(i)][Int(j)] = c
+                if (undoGrid.count > 0) {
+                    let c = undoGrid.removeLast()
+                    grid[Int(i)][Int(j)] = c
+                }
             }
         }
         undoActions.append(da)

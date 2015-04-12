@@ -19,6 +19,9 @@ public class CanvasView: NSView {
     var squareSize: CGFloat
     
     var replaceColorModeState: Bool
+    var colorToReplace: NSColor?
+    var colorToReplaceLoc: [NSPoint]
+    
     var eraseState: Bool
     
     var cursorSize: CGFloat
@@ -71,6 +74,8 @@ public class CanvasView: NSView {
         eraseState = false
         cursorSize = brushSize
         cursorLoc = NSPoint(x: 0, y: 0)
+        colorToReplace = nil
+        colorToReplaceLoc = [NSPoint]()
         super.init(frame: frame)
     }
     
@@ -219,22 +224,30 @@ public class CanvasView: NSView {
     //
     
     public func toggleEraseState() -> Bool {
-        eraseState = !eraseState;
-        return eraseState;
+        eraseState = !eraseState
+        return eraseState
     }
     
     public func getEraseState() -> Bool {
-        return eraseState;
+        return eraseState
     }
     
     // Returns the new replace color state after the toggle.
     public func toggleReplaceColorState() -> Bool {
-        replaceColorModeState = !replaceColorModeState;
-        return replaceColorModeState;
+        replaceColorModeState = !replaceColorModeState
+        
+        colorToReplace = selectedColor
+        // Do a scan to find locations of that color.
+        colorToReplaceLoc = grid.getColorLocations(colorToReplace!)
+        return replaceColorModeState
     }
     
-    public func replaceColor(selectedColor: NSColor, color: NSColor) {
-        
+    public func replaceColor(withColor: NSColor) {
+        for (var i = 0; i < colorToReplaceLoc.count; i++) {
+            var x = colorToReplaceLoc[i].x
+            var y = colorToReplaceLoc[i].y
+            grid.setColor(Int(x), y: Int(y), color: withColor)
+        }
     }
     
     //
@@ -245,8 +258,8 @@ public class CanvasView: NSView {
         if (!replaceColorModeState) {
             selectedColor = color
         } else {
-            replaceColor(selectedColor, color: color)
-
+            replaceColor(color)
+            needsDisplay = true
         }
     }
     
