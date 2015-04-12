@@ -21,6 +21,9 @@ public class CanvasView: NSView {
     var replaceColorModeState: Bool
     var eraseState: Bool
     
+    var drawCursor: Bool
+    var cursorLoc: NSPoint
+    
     var grid: GridModel
     
     //
@@ -64,33 +67,41 @@ public class CanvasView: NSView {
         squareSize = 10
         
         grid = GridModel(width: Int(width/squareSize), height: Int(height/squareSize))
-        replaceColorModeState = false;
-        eraseState = false;
+        replaceColorModeState = false
+        eraseState = false
+        cursorLoc = NSPoint(x: 0, y: 0)
+        drawCursor = false
         super.init(frame: frame)
     }
     
     override public func drawRect(dirtyRect: NSRect) {
         super.drawRect(dirtyRect)
         
-        let aX = Int(dirtyRect.width / squareSize)
-        let aY = Int(dirtyRect.height / squareSize)
         let x = Int(dirtyRect.origin.x / squareSize)
         let y = Int(dirtyRect.origin.y / squareSize)
+        let aX = Int(dirtyRect.width / squareSize)
+        let aY = Int(dirtyRect.height / squareSize)
         
         // Set the color in necessary squares.
         let numX = x + aX
         let numY = y + aY
         for (var i = x; i < numX; i++) {
             for (var j = y; j < numY; j++) {
+                var newColor = canvasColor
                 if let color = grid.getColor(i, y: j) {
-                    let newColor = Utils().blendColor(color, colorAbove: canvasColor)
-                    newColor.setFill()
-                } else {
-                    canvasColor.setFill()
+                    newColor = Utils().blendColor(color, colorAbove: canvasColor)
                 }
+                newColor.setFill()
+                
                 let r = NSMakeRect(CGFloat(i)*squareSize, CGFloat(j)*squareSize, squareSize, squareSize)
                 NSRectFill(r)
             }
+        }
+        
+        if (x == Int(cursorLoc.x) && y == Int(cursorLoc.y)) {
+            selectedColor.setFill()
+            let r = NSMakeRect(cursorLoc.x*squareSize, cursorLoc.y*squareSize, squareSize*brushSize, squareSize*brushSize)
+            NSRectFill(r)
         }
     }
     
@@ -156,6 +167,21 @@ public class CanvasView: NSView {
             // Safe to unpack appDelegate here - can't click the view if it hasn't been set.
             appDelegate!.setPaletteColor(color)
         }
+    }
+    
+    override public func mouseMoved(theEvent: NSEvent) {
+        super.mouseMoved(theEvent)
+        let prevCursor = cursorLoc
+        cursorLoc = convertToGridPoint(theEvent)
+        
+        // Indicate to draw if necessary.
+        // TODO - code used in multiple locations, helper method?
+        let r = NSMakeRect(cursorLoc.x*squareSize, cursorLoc.y*squareSize, brushSize*squareSize, brushSize*squareSize)
+        let pr = NSMakeRect(prevCursor.x*squareSize, prevCursor.y*squareSize, brushSize*squareSize, brushSize*squareSize)
+        setNeedsDisplayInRect(r)
+        setNeedsDisplayInRect(pr)
+
+
     }
     
     //

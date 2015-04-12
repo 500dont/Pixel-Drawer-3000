@@ -26,12 +26,12 @@ public class AppDelegate: NSResponder, NSApplicationDelegate {
     @IBOutlet weak var replaceColorButton: NSButton!
 
     public func applicationDidFinishLaunching(aNotification: NSNotification?) {
+        window.makeFirstResponder(customView)
+        window.acceptsMouseMovedEvents = true
+        
         customView.setAppDelegate(self)
         colorPanel = NSColorPanel.sharedColorPanel()
         colorPanel!.showsAlpha = true
-        window.makeFirstResponder(self)
-//        undoRedoStepsView.addTarget(self, action: Selector("onIncreaseUndoSteps:"), forControlEvents: UIControlEvents.ValueChanged)
-//        undoRedoStepsView.addTarget(self, action: Selector("onDecreaseUndoSteps:"), forControlEvents: UIControlEvents.ValueChanged)
 
     }
 
@@ -41,11 +41,6 @@ public class AppDelegate: NSResponder, NSApplicationDelegate {
     
     @IBAction func onDebug(sender: AnyObject) {
         customView.printGrid()
-    }
-    
-    override public func keyDown(theEvent: NSEvent) {
-        let chars = theEvent.characters
-        //println("keydown: " + !chars);
     }
 
     //
@@ -191,7 +186,7 @@ public class AppDelegate: NSResponder, NSApplicationDelegate {
     }
     
     private func saveProgress() {
-        
+        // TODO
     }
 }
 
