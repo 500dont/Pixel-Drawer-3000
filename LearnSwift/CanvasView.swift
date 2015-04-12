@@ -98,10 +98,17 @@ public class CanvasView: NSView {
             }
         }
         
-        if (x == Int(cursorLoc.x) && y == Int(cursorLoc.y)) {
-            selectedColor.setFill()
-            let r = NSMakeRect(cursorLoc.x*squareSize, cursorLoc.y*squareSize, squareSize*brushSize, squareSize*brushSize)
-            NSRectFill(r)
+        if (Int(cursorLoc.x) >= x && Int(cursorLoc.x) <= numX
+            && Int(cursorLoc.y) >= y && Int(cursorLoc.y) <= numY) {
+            // There's a bug where you need to use setFill not setStroke...
+            if (eraseState) {
+                canvasColor.setFill()
+            } else {
+                selectedColor.setFill()
+            }
+            let r = NSMakeRect(cursorLoc.x*squareSize, cursorLoc.y*squareSize,
+                squareSize*brushSize, squareSize*brushSize)
+            NSFrameRect(r)
         }
     }
     
