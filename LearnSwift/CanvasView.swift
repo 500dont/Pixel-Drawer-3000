@@ -21,7 +21,7 @@ public class CanvasView: NSView {
     var replaceColorModeState: Bool
     var eraseState: Bool
     
-    var drawCursor: Bool
+    var cursorSize: CGFloat
     var cursorLoc: NSPoint
     
     var grid: GridModel
@@ -69,8 +69,8 @@ public class CanvasView: NSView {
         grid = GridModel(width: Int(width/squareSize), height: Int(height/squareSize))
         replaceColorModeState = false
         eraseState = false
+        cursorSize = brushSize
         cursorLoc = NSPoint(x: 0, y: 0)
-        drawCursor = false
         super.init(frame: frame)
     }
     
@@ -179,16 +179,16 @@ public class CanvasView: NSView {
     override public func mouseMoved(theEvent: NSEvent) {
         super.mouseMoved(theEvent)
         let prevCursor = cursorLoc
+        let prevCursorSize = cursorSize
         cursorLoc = convertToGridPoint(theEvent)
+        cursorSize = brushSize
         
         // Indicate to draw if necessary.
         // TODO - code used in multiple locations, helper method?
         let r = NSMakeRect(cursorLoc.x*squareSize, cursorLoc.y*squareSize, brushSize*squareSize, brushSize*squareSize)
-        let pr = NSMakeRect(prevCursor.x*squareSize, prevCursor.y*squareSize, brushSize*squareSize, brushSize*squareSize)
+        let pr = NSMakeRect(prevCursor.x*squareSize, prevCursor.y*squareSize, prevCursorSize*squareSize, prevCursorSize*squareSize)
         setNeedsDisplayInRect(r)
         setNeedsDisplayInRect(pr)
-
-
     }
     
     //
