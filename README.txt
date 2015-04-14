@@ -1,10 +1,5 @@
 Pixel Drawer 3000
 
-To file bugs / feedback email: pixeldrawer3000@gmail.com, or Mady if you know her.
-
-Here is my super cool pixel drawing program! Basically, I started the project to try out Apple's recent programming language, Swift. It has some pretty basic features.
-
-Pixel Drawer 3000 (PD3) allows you to:
 - colour in squares on a grid
 - change the brush size (e.g. 1 = 1 square, 2 = 2x2 square)
 - change the background colour
@@ -21,3 +16,4 @@ b/0 - to save you must add the extension ".png", also there's something broken i
 b/1 - sometimes when the application starts up, the "brush colour" will not be associated with the visible colour palette, click on the "brush colour" well, and then pick a colour to refocus it 
 b/2 - when you replace colour a colour, undo doesn't work correctly
 
+contact: pixeldrawer3000@gmail.com, or mady 
